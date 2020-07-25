@@ -1,0 +1,9 @@
+node_modules/
+client/node_modules/
+
+*.env
+
+.vscode/
+.cache/
+
+server/dev-data/
