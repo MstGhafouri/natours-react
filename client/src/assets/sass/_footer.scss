@@ -1,0 +1,24 @@
+.ui.grid.footer {
+  margin: 0;
+  padding: 2rem 3rem;
+
+  & .sub.header {
+    text-align: center;
+  }
+}
+
+.ui.list.footer__list {
+  & > .item {
+    font-size: 1.5rem;
+    color: $color-dark;
+    padding: 0.5rem;
+    transition: all 0.3s;
+
+    &:hover {
+      color: initial;
+      transform: rotate(-5deg) scale(1.2);
+      box-shadow: 2px 5px 10px rgba($color-grey, 0.5);
+      background-color: $color-white;
+    }
+  }
+}

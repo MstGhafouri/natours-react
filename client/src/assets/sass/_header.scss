@@ -1,0 +1,27 @@
+.ui.menu.navigation {
+  background-color: $color-dark;
+  padding: 0 3rem;
+  border-radius: 0;
+  height: 7rem;
+  color: $color-white;
+  font-size: 1.6rem;
+
+  & .item.animated-item {
+    color: inherit;
+    text-transform: uppercase;
+    font-weight: 300;
+    transition: all 0.2s;
+
+    &:hover {
+      color: $color-white;
+      text-shadow: 2px 5px 5px $color-black;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+.ui.image.navigation {
+  &__logo {
+    height: 3rem;
+  }
+}
