@@ -15,7 +15,7 @@
     transition: all 0.3s;
 
     &:hover {
-      color: initial;
+      color: darken($color-primary, 30);
       transform: rotate(-5deg) scale(1.2);
       box-shadow: 2px 5px 10px rgba($color-grey, 0.5);
       background-color: $color-white;

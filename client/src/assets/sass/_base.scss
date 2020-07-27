@@ -29,6 +29,10 @@ body {
   flex: 1 1 auto;
 }
 
+.d-inline-block {
+  display: inline-block !important;
+}
+
 ::selection {
   background-color: $color-primary;
   color: $color-white;
