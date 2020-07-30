@@ -1,0 +1,35 @@
+.login-form {
+  margin: 0 auto;
+  max-width: 50rem;
+  padding: 5rem 7rem;
+  margin-top: 10rem;
+  background-color: $color-white;
+  border-radius: 5px;
+  box-shadow: 0 2.5rem 8rem 2rem rgba($color-black, 0.06);
+
+  & .ui.header {
+    @extend %customHeading;
+    margin-bottom: 5rem;
+  }
+
+  & .ui.form .field {
+    margin-bottom: 2rem;
+
+    & > label {
+      color: $color-grey;
+      font-size: 1.6rem;
+    }
+
+    & > input {
+      font-family: inherit;
+      color: inherit;
+      font-size: 1.5rem;
+      border: none;
+      padding: 1.25rem 1.75rem;
+      display: block;
+      width: 100%;
+      background-color: darken($color-light, 3);
+      border-radius: 5px;
+    }
+  }
+}

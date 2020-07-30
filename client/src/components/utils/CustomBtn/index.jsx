@@ -1,8 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+// import { Button } from 'semantic-ui-react';
 
-const CustomBtn = ({ linkTo, classes, children, rgb }) => {
-  return (
+const CustomBtn = ({
+  linkTo,
+  classes,
+  children,
+  rgb,
+  isLink = true,
+  type = 'submit'
+}) =>
+  isLink ? (
     <Link
       to={linkTo}
       className={classes}
@@ -10,7 +18,14 @@ const CustomBtn = ({ linkTo, classes, children, rgb }) => {
     >
       {children}
     </Link>
+  ) : (
+    <button
+      type={type}
+      className={classes}
+      style={{ backgroundColor: `rgb(${rgb})` }}
+    >
+      {children}
+    </button>
   );
-};
 
 export default CustomBtn;
