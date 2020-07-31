@@ -1,0 +1,56 @@
+.user-panel {
+  background-color: $color-white;
+  max-width: 120rem;
+  margin: 10rem auto 5rem;
+  min-height: 100vh;
+  border-radius: 3px;
+  overflow: hidden;
+  box-shadow: 0 2.5rem 8rem 2rem rgba($color-black, 0.07);
+
+  & > .ui.divided.grid > .row > .column:first-child {
+    background-image: linear-gradient(
+      to right bottom,
+      $color-primary-light,
+      $color-primary-dark
+    );
+    min-height: 100vh;
+    padding-right: 0;
+
+    & > .ui.list {
+      padding: 4rem 0;
+      font-size: 1.5rem;
+
+      & > .ui.divider {
+        margin-top: 3rem;
+        color: $color-light;
+      }
+
+      & > a.item {
+        cursor: pointer;
+        color: $color-light;
+        padding: 1rem 4rem;
+        margin: 2rem 0;
+        transition: all 0.4s;
+
+        & > i.icon {
+          color: $color-light;
+        }
+
+        &.active {
+          border-left: 4px solid $color-light;
+        }
+
+        &:hover:not(.active) {
+          transform: translateX(5px);
+        }
+
+        & .header {
+          font-weight: 300;
+          font-size: inherit;
+          color: inherit;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+}
