@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Layout from './HOC/Layout.jsx';
 import Home from './pages/Home';
 import Login from './pages/Login';
+import PasswordReset from './pages/PasswordReset';
 import NotFound from './pages/404';
 
 class Routes extends React.Component {
@@ -14,6 +15,7 @@ class Routes extends React.Component {
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/login" exact component={Login} />
+            <Route path="/password-reset" exact component={PasswordReset} />
             <Route component={NotFound} />
           </Switch>
         </Layout>

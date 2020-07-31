@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import { Form, Container, Header } from 'semantic-ui-react';
+import { Form, Divider } from 'semantic-ui-react';
 
 import CustomBtn from '../../utils/CustomBtn';
+import ContentBox from '../../utils/ContentBox';
 
 const Login = () => {
   useEffect(() => {
@@ -9,9 +10,8 @@ const Login = () => {
   }, []);
 
   return (
-    <div className="login-form">
-      <Container>
-        <Header size="large">Log In to your account</Header>
+    <div className="custom-form">
+      <ContentBox headingText="Log In to your account">
         <Form size="huge">
           <Form.Field>
             <label>Email address</label>
@@ -21,16 +21,18 @@ const Login = () => {
             <label>Password</label>
             <input placeholder="**********" type="password" />
           </Form.Field>
-          {/* <Button type="submit">Submit</Button> */}
-          <CustomBtn
-            classes="custom-btn"
-            rgb="40, 180, 133"
-            isLink={false}
-          >
+          <CustomBtn classes="custom-btn" rgb="40, 180, 133" isLink={false}>
             Login
           </CustomBtn>
+          <Divider section />
+          <CustomBtn
+            linkTo="/password-reset"
+            classes="font-w-normal font-s-small"
+          >
+            Forgot your password?
+          </CustomBtn>
         </Form>
-      </Container>
+      </ContentBox>
     </div>
   );
 };

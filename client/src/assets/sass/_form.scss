@@ -1,15 +1,18 @@
-.login-form {
-  margin: 0 auto;
+.custom-form {
+  margin: 10rem auto 5rem;
   max-width: 50rem;
   padding: 5rem 7rem;
-  margin-top: 10rem;
+  // margin-top: 10rem;
   background-color: $color-white;
   border-radius: 5px;
   box-shadow: 0 2.5rem 8rem 2rem rgba($color-black, 0.06);
 
-  & .ui.header {
+  & > .ui.container > .ui.header {
     @extend %customHeading;
-    margin-bottom: 5rem;
+
+    &.large {
+      margin-bottom: 5rem;
+    }
   }
 
   & .ui.form .field {

@@ -33,6 +33,14 @@ body {
   display: inline-block !important;
 }
 
+.font-w-normal {
+  font-weight: 400 !important;
+}
+
+.font-s-small {
+  font-size: 1.5rem !important;
+}
+
 %customHeading {
   text-transform: uppercase;
   letter-spacing: 2px;
