@@ -43,10 +43,10 @@ body {
 
 %customHeading {
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 1px;
   background-image: linear-gradient(
     to right,
-    $color-primary,
+    lighten($color-primary, 10),
     $color-primary-dark
   );
   background-clip: text;
