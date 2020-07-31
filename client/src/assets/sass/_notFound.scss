@@ -1,0 +1,18 @@
+.ui.grid.notFound-page {
+  & > .row {
+    & > .column:last-child {
+      & > .ui.header:first-child {
+        font-size: 7em;
+        text-shadow: 2rem 0 1rem rgba($color-black, 0.1);
+      }
+
+      & > .ui.header:last-of-type {
+        color: $color-grey;
+        font-weight: 400;
+        padding: 0 5rem;
+        line-height: 1.6;
+        margin-bottom: 2rem;
+      }
+    }
+  }
+}

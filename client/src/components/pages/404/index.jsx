@@ -10,29 +10,23 @@ const NotFound = () => {
   }, []);
 
   return (
-    <Grid container textAlign="center" verticalAlign="middle">
+    <Grid
+      container
+      textAlign="center"
+      className="notFound-page"
+      verticalAlign="middle"
+    >
       <Grid.Row>
         <Grid.Column width="8">
           <Image src={pic} alt="Not found!" fluid />
         </Grid.Column>
         <Grid.Column width="8">
-          <Header size="huge" style={{ fontSize: '7em' }}>
-            404
-          </Header>
+          <Header size="huge">404</Header>
           <Header size="large">
-            UH OH! You're lost in{' '}
+            OH NO! You're lost in&nbsp;
             <span style={{ color: 'green' }}>Natours</span>!
           </Header>
-          <Header
-            size="tiny"
-            style={{
-              color: '#777',
-              fontWeight: '400',
-              padding: '0 5rem',
-              lineHeight: '1.6',
-              marginBottom: '2rem'
-            }}
-          >
+          <Header size="tiny">
             The page you are looking for does not exist. How you got here is a
             mystery. But you can click the button below to go back to the
             homepage.
