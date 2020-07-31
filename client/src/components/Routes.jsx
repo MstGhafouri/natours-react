@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
 
 import Layout from './HOC/Layout.jsx';
 import Home from './pages/Home';
@@ -15,12 +15,25 @@ class Routes extends React.Component {
       <BrowserRouter>
         <Layout>
           <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/login" exact component={Login} />
-            <Route path="/signup" exact component={SignUp} />
-            <Route path="/password-reset" exact component={PasswordReset} />
-            <Route path="/me/settings" exact component={UserPanel} />
-            <Route component={NotFound} />
+            <Route path="/" exact>
+              <Home />
+            </Route>
+            <Route path="/login" exact>
+              <Login />
+            </Route>
+            <Route path="/signup" exact>
+              <SignUp />
+            </Route>
+            <Route path="/password-reset" exact>
+              <PasswordReset />
+            </Route>
+            <Route path="/me/settings" exact>
+              <UserPanel />
+            </Route>
+            <Route path="/404" exact>
+              <NotFound />
+            </Route>
+            <Redirect to="/404" />
           </Switch>
         </Layout>
       </BrowserRouter>
