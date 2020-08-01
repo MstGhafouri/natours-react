@@ -30,6 +30,7 @@ class Routes extends React.Component {
             <Route path="/me/settings" exact>
               <UserPanel />
             </Route>
+            <Redirect from="/me" to="/me/settings" />
             <Route path="/404" exact>
               <NotFound />
             </Route>
