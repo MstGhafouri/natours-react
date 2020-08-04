@@ -10,7 +10,7 @@ const SignUp = () => {
   }, []);
 
   return (
-    <div className="custom-form">
+    <div className="custom-form custom-form-box">
       <ContentBox headingText="Join into natours family">
         <Form size="huge">
           <Form.Field>

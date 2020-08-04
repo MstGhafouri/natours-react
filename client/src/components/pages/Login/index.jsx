@@ -10,7 +10,7 @@ const Login = () => {
   }, []);
 
   return (
-    <div className="custom-form">
+    <div className="custom-form custom-form-box">
       <ContentBox headingText="Log In to your account">
         <Form size="huge">
           <Form.Field>

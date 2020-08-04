@@ -10,7 +10,7 @@ const PasswordReset = () => {
   }, []);
 
   return (
-    <div className="custom-form">
+    <div className="custom-form custom-form-box">
       <ContentBox headingText="Reset your password">
         <Form size="huge">
           <Header size="tiny" color="grey" style={{ wordSpacing: '0.2em' }}>

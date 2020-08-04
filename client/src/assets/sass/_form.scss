@@ -1,11 +1,12 @@
 .custom-form {
-  margin: 10rem auto 5rem;
-  max-width: 55rem;
-  padding: 5rem 7rem;
-  // margin-top: 10rem;
-  background-color: $color-white;
-  border-radius: 5px;
-  box-shadow: 0 2.5rem 8rem 2rem rgba($color-black, 0.06);
+  &-box {
+    margin: 10rem auto 5rem;
+    max-width: 55rem;
+    padding: 5rem 7rem;
+    background-color: $color-white;
+    border-radius: 5px;
+    box-shadow: 0 2.5rem 8rem 2rem rgba($color-black, 0.06);
+  }
 
   & > .ui.container > .ui.header {
     @extend %customHeading;
@@ -30,9 +31,17 @@
       border: none;
       padding: 1.25rem 1.75rem;
       display: block;
-      width: 100%;
       background-color: darken($color-light, 3);
       border-radius: 5px;
+    }
+  }
+}
+
+.settings-form {
+  & .ui.form .field {
+
+    & > input {
+     width: 50%;
     }
   }
 }
