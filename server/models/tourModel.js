@@ -18,6 +18,14 @@ const tourSchema = new mongoose.Schema(
       required: [true, 'Tour must have a duration'],
       min: [1, 'Tour duration must be at least 1']
     },
+    season: {
+      type: String,
+      required: [true, 'Tour must have a season'],
+      enum: {
+        values: ['spring', 'summer', 'fall', 'winter'],
+        message: 'Season is either: spring, summer, fall or winter.'
+      }
+    },
     maxGroupSize: {
       type: Number,
       required: [true, 'Tour must have a group size'],
