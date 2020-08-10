@@ -81,10 +81,12 @@ exports.getAll = Model =>
 
     // const docs = await apiFeatures.query.explain();
     const docs = await apiFeatures.query;
+    const totalDocs = await Model.countDocuments();
 
     res.status(200).json({
       status: 'success',
       results: docs.length,
+      totalDocs,
       data: {
         [Model.collection.name]: docs
       }
