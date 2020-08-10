@@ -1,34 +1,41 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Segment, Dropdown, Header } from 'semantic-ui-react';
+
+import { fetchTours } from '../../../../redux/actions/tour';
 
 const tourOptions = [
   {
     key: 'Popular',
     text: 'Popular',
-    value: 'Popular',
-    icon: 'fire',
+    value: 'ratingsAverage',
+    icon: 'fire'
   },
   {
     key: 'Date',
-    text: 'Date',
-    value: 'Date',
-    icon: 'calendar outline',
+    text: 'Newest',
+    value: 'createdAt',
+    icon: 'calendar outline'
   },
   {
     key: 'Price',
     text: 'Price',
-    value: 'Price',
+    value: 'price',
     icon: 'money bill alternate outline'
   },
   {
     key: 'Size',
     text: 'Size',
-    value: 'Size',
+    value: 'maxGroupSize',
     icon: 'users'
   }
 ];
 
-const Heading = () => {
+const Heading = ({ fetchTours }) => {
+  const OnOptionChange = (e, data) => {
+    fetchTours(`sort=-${data.value}`);
+  };
+
   return (
     <Segment size="large" raised className="tours-heading">
       <Header>Most Popular Tours</Header>
@@ -38,11 +45,12 @@ const Heading = () => {
           className="icon"
           inline
           options={tourOptions}
-          defaultValue={tourOptions[0].value}
+          defaultValue={tourOptions[1].value}
+          onChange={OnOptionChange}
         />
       </span>
     </Segment>
   );
 };
 
-export default Heading;
+export default connect(null, { fetchTours })(Heading);
