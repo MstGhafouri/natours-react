@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Grid, Image, Header } from 'semantic-ui-react';
 import CustomBtn from '../../utils/CustomBtn';
 
-import pic from '../../../assets/img/404.svg';
+// import '' from '../../../assets/img/404.svg';
 
 const NotFound = () => {
   useEffect(() => {
@@ -18,7 +18,7 @@ const NotFound = () => {
     >
       <Grid.Row>
         <Grid.Column width="8">
-          <Image src={pic} alt="Not found!" fluid />
+          <Image src={''} alt="Not found!" fluid />
         </Grid.Column>
         <Grid.Column width="8">
           <Header size="huge">404</Header>

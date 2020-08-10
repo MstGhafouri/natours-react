@@ -1,31 +1,27 @@
 import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import { Grid, Container } from 'semantic-ui-react';
 
+import { fetchTours } from '../../../redux/actions/tour';
 import Card from './Card';
 import Heading from './Heading';
 import Pagination from './Pagination';
 
-const Home = () => {
+const Home = ({ fetchTours, tours }) => {
   useEffect(() => {
     document.title = 'Natours | Where Life Begins';
-  }, []);
+    fetchTours();
+  }, [fetchTours]);
 
   return (
     <div className="section-tours">
       <Heading />
       <Grid doubling stackable columns={3}>
-        <Grid.Column className="card-container">
-          <Card season="fall" />
-        </Grid.Column>
-        <Grid.Column className="card-container">
-          <Card season="summer" />
-        </Grid.Column>
-        <Grid.Column className="card-container">
-          <Card season="winter" />
-        </Grid.Column>
-        <Grid.Column className="card-container">
-          <Card season="summer" />
-        </Grid.Column>
+        {tours.map(tour => (
+          <Grid.Column key={tour.id} className="card-container">
+            <Card {...tour} />
+          </Grid.Column>
+        ))}
       </Grid>
       <Container textAlign="center">
         <Pagination />
@@ -34,4 +30,8 @@ const Home = () => {
   );
 };
 
-export default Home;
+const mapStateToProps = ({ tours }) => {
+  return { tours };
+};
+
+export default connect(mapStateToProps, { fetchTours })(Home);

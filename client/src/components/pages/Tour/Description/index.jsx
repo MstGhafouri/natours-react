@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon } from 'semantic-ui-react';
 
-import coverImg from '../../../../assets/img/tours/tour-1-cover.jpg';
+// import '' from '../../../../assets/img/tours/tour-1-cover.jpg';
 
 const TourDescription = () => {
   return (
@@ -37,7 +37,7 @@ const TourDescription = () => {
 
             <div className="overview-box__detail">
               <img
-                src={coverImg}
+                src={''}
                 alt="Lead guide"
                 className="overview-box__img"
               />
@@ -46,7 +46,7 @@ const TourDescription = () => {
             </div>
             <div className="overview-box__detail">
               <img
-                src={coverImg}
+                src={''}
                 alt="Tour guide"
                 className="overview-box__img"
               />
@@ -55,7 +55,7 @@ const TourDescription = () => {
             </div>
             <div className="overview-box__detail">
               <img
-                src={coverImg}
+                src={''}
                 alt="Intern"
                 className="overview-box__img"
               />

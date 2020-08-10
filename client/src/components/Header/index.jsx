@@ -3,12 +3,10 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { Menu, Image, Icon } from 'semantic-ui-react';
 
 import SearchBar from './SearchBar';
-import logo from '../../assets/img/icons/logo-white.png';
+// import logo from '../../assets/img/icons/logo-white.png';
 
 const Header = () => {
   const pathname = useLocation().pathname;
-
-  console.log(pathname);
 
   return (
     <Menu className="navigation" borderless>
@@ -19,7 +17,7 @@ const Header = () => {
         name="AllTours"
         className="animated-item"
       >
-        <Image src={logo} alt="Natours" className="navigation__logo" />
+        <Image src={''} alt="Natours" className="navigation__logo" />
       </Menu.Item>
       {pathname === '/' && (
         <Menu.Item>

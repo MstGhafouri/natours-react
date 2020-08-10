@@ -1,12 +1,12 @@
 import React from 'react';
 import { Grid, Image, List, Header } from 'semantic-ui-react';
-import logo from '../../assets/img/icons/logo-green.png';
+// import logo from '../../assets/img/icons/logo-green.png';
 
 const Footer = () => {
   return (
     <Grid className="footer">
       <Grid.Column width={10}>
-        <Image src={logo} alt="Natours" className="navigation__logo" />
+        <Image src={''} alt="Natours" className="navigation__logo" />
       </Grid.Column>
       <Grid.Column width={6}>
         <Grid>

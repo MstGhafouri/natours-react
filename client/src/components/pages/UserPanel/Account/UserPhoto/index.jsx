@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Header, Grid, Image, Divider, Button } from 'semantic-ui-react';
 
-import pic from '../../../../../assets/img/tours/tour-1-cover.jpg';
+// import pic from '../../../../../assets/img/tours/tour-1-cover.jpg';
 import ContentBox from '../../../../utils/ContentBox';
 import DropzoneInput from './DropzoneInput';
 import CropperInput from './CropperInput';
@@ -25,7 +25,7 @@ const UserPhoto = () => {
     <div className="user-panel__photo">
       <ContentBox headingText="Your photo">
         <Image
-          src={pic}
+          src={''}
           bordered
           style={{ width: '9rem', height: '8rem', borderRadius: '50%' }}
         />

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Icon } from 'semantic-ui-react';
 
-import coverImg from '../../../../assets/img/tours/tour-1-cover.jpg';
+// import '' from '../../../../assets/img/tours/tour-1-cover.jpg';
 
 const TourHeader = () => {
 
@@ -9,7 +9,7 @@ const TourHeader = () => {
     <section className="section-header">
       <div className="header__hero">
         <div className="header__hero-overlay">&nbsp;</div>
-        <img src={coverImg} alt="tour" className="header__hero-img" />
+        <img src={''} alt="tour" className="header__hero-img" />
       </div>
       <div className="heading-box">
         <h1 className="heading-primary">
