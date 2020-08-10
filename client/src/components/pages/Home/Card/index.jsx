@@ -58,7 +58,7 @@ const Card = props => {
         <h3 className="heading-tertiary">
           <span
             style={{
-              backgroundImage: `linear-gradient(to bottom right, rgba(${colorConfig[season][0]}, 0.8), rgba(${colorConfig[season][1]}, 0.8))`
+              backgroundImage: `linear-gradient(to bottom right, rgba(${colorConfig[season][0]}, 0.87), rgba(${colorConfig[season][1]}, 0.87))`
             }}
           >
             {name}
