@@ -33,7 +33,7 @@ const tourOptions = [
 
 const Heading = ({ fetchTours }) => {
   const OnOptionChange = (e, data) => {
-    fetchTours(`sort=-${data.value}`);
+    fetchTours({ page: 1, sortBy: `-${data.value}` });
   };
 
   return (

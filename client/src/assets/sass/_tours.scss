@@ -137,13 +137,13 @@
   & .active.item,
   & .active.item:hover {
     border-color: $color-grey;
-    outline-color: $color-grey;
+    outline: none;
   }
 
   & a.item:active,
   & a.item:hover,
   & a.item:focus {
     border-color: $color-grey;
-    outline-color: $color-grey;
+    outline: none;
   }
 }

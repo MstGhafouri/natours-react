@@ -6,3 +6,6 @@ export const getToursFailure = "GET_TOURS_FAILURE";
 export const getTourRequest = "GET_TOUR_REQUEST";
 export const getTourSuccess = "GET_TOUR_SUCCESS";
 export const getTourFailure = "GET_TOUR_FAILURE";
+
+export const getTotalDocs = "GET_TOTAL_DOCS";
+export const setQueryParams = "SET_QUERY_PARAMS";

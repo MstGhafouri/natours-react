@@ -1,5 +1,8 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Pagination } from 'semantic-ui-react';
+
+import { fetchTours } from '../../../../redux/actions/tour';
 
 class Paginate extends React.Component {
   state = {
@@ -9,10 +12,25 @@ class Paginate extends React.Component {
     showEllipsis: true,
     showFirstAndLastNav: false,
     showPreviousAndNextNav: true,
-    totalPages: 20
+    totalPages: this.props.totalDocuments,
+    limit: 6
   };
 
-  handlePaginationChange = (e, { activePage }) => this.setState({ activePage })
+  componentDidUpdate(prevProps) {
+    const { totalDocuments, page } = this.props;
+
+    prevProps.totalDocuments !== totalDocuments &&
+      this.setState({
+        totalPages: Math.ceil(totalDocuments / this.state.limit)
+      });
+
+    prevProps.page !== page && this.setState({ activePage: page });
+  }
+
+  handlePaginationChange = (e, { activePage }) => {
+    this.props.fetchTours({ page: activePage });
+    this.setState({ activePage });
+  };
 
   render() {
     const {
@@ -22,8 +40,8 @@ class Paginate extends React.Component {
       showEllipsis,
       showFirstAndLastNav,
       showPreviousAndNextNav,
-      totalPages,
-    } = this.state
+      totalPages
+    } = this.state;
 
     return (
       <Pagination
@@ -46,4 +64,8 @@ class Paginate extends React.Component {
   }
 }
 
-export default Paginate;
+const mapStateToProps = ({ totalDocuments, queryParams: { page } }) => {
+  return { totalDocuments, page };
+};
+
+export default connect(mapStateToProps, { fetchTours })(Paginate);
