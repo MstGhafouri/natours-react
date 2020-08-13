@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Pagination } from 'semantic-ui-react';
+import { scroller } from 'react-scroll';
 
 import { fetchTours } from '../../../../redux/actions/tour';
 
@@ -28,8 +29,18 @@ class Paginate extends React.Component {
   }
 
   handlePaginationChange = (e, { activePage }) => {
+    this.scrollToSection('header');
     this.props.fetchTours({ page: activePage });
     this.setState({ activePage });
+  };
+
+  scrollToSection = sectionName => {
+    scroller.scrollTo(sectionName, {
+      duration: 700,
+      smooth: true,
+      delay: 10,
+      offset: -100
+    });
   };
 
   render() {
