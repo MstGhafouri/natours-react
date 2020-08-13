@@ -125,9 +125,9 @@ tourSchema.index({ slug: 1 });
 tourSchema.index({ startLocation: '2dsphere' });
 
 // 1) Virtual Property (Not Persisted In DB !)
-tourSchema.virtual('durationInWeeks').get(function () {
-  return this.duration / 7;
-});
+// tourSchema.virtual('durationInWeeks').get(function () {
+//   return this.duration / 7;
+// });
 
 // Virtual Populate Reviews
 tourSchema.virtual('reviews', {

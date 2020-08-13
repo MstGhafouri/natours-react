@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Segment, Dropdown, Header } from 'semantic-ui-react';
 
@@ -32,13 +32,33 @@ const tourOptions = [
 ];
 
 const Heading = ({ fetchTours }) => {
+  const [term, setTerm] = useState('recent');
+
   const OnOptionChange = (e, data) => {
     fetchTours({ page: 1, sortBy: `-${data.value}` });
+    let text = 'recent';
+    switch (data.value) {
+      case 'maxGroupSize':
+        text = 'crowded';
+        break;
+      case 'price':
+        text = 'expensive';
+        break;
+      case 'createdAt':
+        text = 'recent';
+        break;
+      case 'ratingsAverage':
+        text = 'popular';
+        break;
+      default:
+        text = 'recent';
+    }
+    setTerm(text);
   };
 
   return (
     <Segment size="large" raised className="tours-heading">
-      <Header>Most Popular Tours</Header>
+      <Header>{`Most ${term} Tours`}</Header>
       <span>
         Show me tours by{' '}
         <Dropdown

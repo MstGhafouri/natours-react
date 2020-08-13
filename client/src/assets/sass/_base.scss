@@ -61,3 +61,12 @@ body {
   background-color: $color-primary;
   color: $color-white;
 }
+
+.ui.fluid.search .results {
+  width: 150%;
+}
+
+.ui.search .results {
+  max-height: 65vh;
+  overflow-y: auto;
+}
