@@ -42,12 +42,19 @@ const Tour = ({ fetchTour, selectedTour, isLoading }) => {
         season={selectedTour.season}
       />
       <TourPictures images={selectedTour.images} />
-      <TourMap />
+      <TourMap
+        locations={selectedTour.locations}
+        season={selectedTour.season}
+      />
       <TourReviews
         reviews={selectedTour.reviews}
         season={selectedTour.season}
       />
-      <TourCTA duration={selectedTour.duration} images={selectedTour.images} season={selectedTour.season} />
+      <TourCTA
+        duration={selectedTour.duration}
+        images={selectedTour.images}
+        season={selectedTour.season}
+      />
     </React.Fragment>
   );
 };
