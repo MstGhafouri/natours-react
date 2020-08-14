@@ -1,6 +1,7 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom';
+import { Router, Route, Switch, Redirect } from 'react-router-dom';
 
+import history from '../history';
 import Layout from './HOC/Layout.jsx';
 import Home from './pages/Home';
 import Tour from './pages/Tour';
@@ -13,7 +14,7 @@ import NotFound from './pages/404';
 class Routes extends React.Component {
   render() {
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <Layout>
           <Switch>
             <Route path="/" exact>
@@ -41,7 +42,7 @@ class Routes extends React.Component {
             <Redirect to="/404" />
           </Switch>
         </Layout>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
