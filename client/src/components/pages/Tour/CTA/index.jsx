@@ -1,27 +1,44 @@
 import React from 'react';
 
+import { colorConfig } from '../../../utils';
 import CustomBtn from '../../../utils/CustomBtn';
-// import coverImg from '../../../../assets/img/tours/tour-1-cover.jpg';
-// import logo from '../../../../assets/img/icons/logo-white.png';
 
-const TourCTA = () => {
+const TourCTA = ({ duration, images, season }) => {
   return (
     <section className="section-cta">
       <div className="cta">
-        <div className="cta__img cta__img--logo">
-          <img src={''} alt="Natours logo" />
+        <div className="cta__img cta__img--logo" style={{ background: `linear-gradient(to right bottom, rgb(${colorConfig[season][0]}), rgb(${colorConfig[season][1]}))` }}>
+          <img
+            src={`${process.env.PUBLIC_URL}/img/icons/logo-white.png`}
+            alt="Natours logo"
+          />
         </div>
-        <img src={''} alt="" className="cta__img cta__img--1" />
-        <img src={''} alt="" className="cta__img cta__img--2" />
+        <img
+          src={`${process.env.PUBLIC_URL}/img/tours/${images[0]}`}
+          alt="tour"
+          className="cta__img cta__img--1"
+        />
+        <img
+          src={`${process.env.PUBLIC_URL}/img/tours/${images[2]}`}
+          alt="tour"
+          className="cta__img cta__img--2"
+        />
 
         <div className="cta__content">
-          <h2 className="heading-secondary">What are you waiting for?</h2>
+          <h2
+            className="heading-secondary"
+            style={{
+              backgroundImage: `linear-gradient(to right, rgb(${colorConfig[season][0]}), rgb(${colorConfig[season][1]}))`
+            }}
+          >
+            What are you waiting for?
+          </h2>
           <p className="cta__text">
-            10 days. 1 adventure. Infinite memories. Make it yours today!
+            {`${duration} days. 1 adventure. Infinite memories. Make it yours today!`}
           </p>
           <CustomBtn
             classes="custom-btn span-all-rows"
-            rgb="40, 180, 133"
+            rgb={colorConfig[season][1]}
             isLink={false}
           >
             Book tour now!

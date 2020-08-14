@@ -1,31 +1,22 @@
 import React from 'react';
 
-// import '' from '../../../../assets/img/tours/tour-1-cover.jpg';
+import PictureBox from './PictureBox';
 
-const TourPictures = () => {
+const TourPictures = ({ images }) => {
   return (
     <section className="section-pictures">
-      <div className="picture-box">
-        <img
-          className="picture-box__img picture-box__img--1"
-          src={''}
-          alt="The Park Camper Tour 1"
-        />
-      </div>
-      <div className="picture-box">
-        <img
-          className="picture-box__img picture-box__img--2"
-          src={''}
-          alt="The Park Camper Tour 1"
-        />
-      </div>
-      <div className="picture-box">
-        <img
-          className="picture-box__img picture-box__img--3"
-          src={''}
-          alt="The Park Camper Tour 1"
-        />
-      </div>
+      <PictureBox
+        image={`${process.env.PUBLIC_URL}/img/tours/${images[0]}`}
+        imgNum={1}
+      />
+      <PictureBox
+        image={`${process.env.PUBLIC_URL}/img/tours/${images[1]}`}
+        imgNum={2}
+      />
+      <PictureBox
+        image={`${process.env.PUBLIC_URL}/img/tours/${images[2]}`}
+        imgNum={3}
+      />
     </section>
   );
 };

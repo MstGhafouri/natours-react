@@ -3,6 +3,9 @@ import {
   getToursRequest,
   getToursSuccess,
   getToursFailure,
+  getTourRequest,
+  getTourSuccess,
+  getTourFailure,
   getTotalDocs,
   setQueryParams
 } from '../types';
@@ -29,6 +32,18 @@ export const fetchTours = (queryObj = INITIAL_QUERY) => {
       dispatch({ type: getTotalDocs, payload: response.data.totalDocs });
     } catch (error) {
       dispatch({ type: getToursFailure, payload: error });
+    }
+  };
+};
+
+export const fetchTour = slug => {
+  return async dispatch => {
+    try {
+      dispatch({ type: getTourRequest });
+      const response = await natoursApi.get(`/tours/slug/${slug}`);
+      dispatch({ type: getTourSuccess, payload: response.data.data.tour });
+    } catch (error) {
+      dispatch({ type: getTourFailure, payload: error });
     }
   };
 };

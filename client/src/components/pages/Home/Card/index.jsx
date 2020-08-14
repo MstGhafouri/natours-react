@@ -3,12 +3,7 @@ import { Icon, Grid, Label } from 'semantic-ui-react';
 import styled from 'styled-components';
 
 import CustomBtn from '../../../utils/CustomBtn';
-
-const colorConfig = {
-  summer: ['126, 213, 111', '40, 180, 133', 'green'],
-  winter: ['109, 213, 250', '33, 147, 176', 'blue'],
-  fall: ['255, 185, 0', '255, 119, 48', 'orange']
-};
+import { colorConfig } from '../../..//utils';
 
 const CardPictureOverlay = styled.div`
   position: absolute;
@@ -23,8 +18,6 @@ const CardPictureOverlay = styled.div`
     ),
     url(${props => props.imgUrl});
 `;
-
-// ../../../../assets/img/tours/${imageCover}
 
 const Card = props => {
   const {
@@ -48,7 +41,6 @@ const Card = props => {
     <div className="card">
       <div className="card__header">
         <div className="card__picture">
-          {/* <div className="card__picture-overlay">&nbsp;</div> */}
           <CardPictureOverlay
             season={season}
             imgUrl={`${process.env.PUBLIC_URL}/img/tours/${imageCover}`}

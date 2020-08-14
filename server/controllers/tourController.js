@@ -65,6 +65,24 @@ exports.createTour = factory.createOne(Tour);
 exports.updateTour = factory.updateOne(Tour);
 exports.deleteTour = factory.deleteOne(Tour);
 
+exports.getTourBySlug = catchAsync(async (req, res, next) => {
+  const tour = await Tour.findOne({ slug: req.params.slug }).populate({
+    path: 'reviews',
+    select: 'review rating user'
+  });
+
+  if (!tour) {
+    return next(new AppError('There is no tour with that name', 404));
+  }
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      tour
+    }
+  });
+});
+
 exports.getTourStat = catchAsync(async (req, res, next) => {
   const stats = await Tour.aggregate([
     {

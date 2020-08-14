@@ -1,89 +1,83 @@
 import React from 'react';
 import { Icon } from 'semantic-ui-react';
 
-// import '' from '../../../../assets/img/tours/tour-1-cover.jpg';
+import { colorConfig } from '../../../utils';
+import Detail from './Detail';
 
-const TourDescription = () => {
+const TourDescription = ({
+  name,
+  date,
+  difficulty,
+  size,
+  ratingsAverage,
+  guides,
+  description,
+  season
+}) => {
+  const headingStyle = {
+    backgroundImage: `linear-gradient(to right, rgb(${colorConfig[season][0]}), rgb(${colorConfig[season][1]}))`
+  };
+
   return (
     <section className="section-description">
       <div className="overview-box">
         <div>
           <div className="overview-box__group">
-            <h2 className="heading-secondary mb-lg">Quick facts</h2>
-            <div className="overview-box__detail">
-              <Icon color="green" className="calendar outline" />
-              <span className="overview-box__label">Next date</span>
-              <span className="overview-box__text">August 2021</span>
-            </div>
-            <div className="overview-box__detail">
-              <Icon color="green" className="chart line" />
-              <span className="overview-box__label">Difficulty</span>
-              <span className="overview-box__text">Medium</span>
-            </div>
-            <div className="overview-box__detail">
-              <Icon color="green" className="users" />
-              <span className="overview-box__label">Participants</span>
-              <span className="overview-box__text">10 people</span>
-            </div>
-            <div className="overview-box__detail">
-              <Icon color="green" className="star" />
-              <span className="overview-box__label">Rating</span>
-              <span className="overview-box__text">4.9 / 5</span>
-            </div>
+            <h2 className="heading-secondary mb-lg" style={headingStyle}>
+              Quick facts
+            </h2>
+            <Detail
+              label="Next date"
+              text={new Date(date).toLocaleString('en-us', {
+                month: 'long',
+                year: 'numeric'
+              })}
+            >
+              <Icon
+                color={colorConfig[season][2]}
+                className="calendar outline"
+              />
+            </Detail>
+            <Detail label="Difficulty" text={difficulty}>
+              <Icon color={colorConfig[season][2]} className="chart line" />
+            </Detail>
+            <Detail label="Participants" text={`${size} people`}>
+              <Icon color={colorConfig[season][2]} className="users" />
+            </Detail>
+            <Detail label="Rating" text={`${ratingsAverage} / 5`}>
+              <Icon color={colorConfig[season][2]} className="star" />
+            </Detail>
           </div>
-
           <div className="overview-box__group">
-            <h2 className="heading-secondary mb-lg">Your tour guides</h2>
-
-            <div className="overview-box__detail">
-              <img
-                src={''}
-                alt="Lead guide"
-                className="overview-box__img"
-              />
-              <span className="overview-box__label">Lead guide</span>
-              <span className="overview-box__text">Steven Miller</span>
-            </div>
-            <div className="overview-box__detail">
-              <img
-                src={''}
-                alt="Tour guide"
-                className="overview-box__img"
-              />
-              <span className="overview-box__label">Tour guide</span>
-              <span className="overview-box__text">Lisa Brown</span>
-            </div>
-            <div className="overview-box__detail">
-              <img
-                src={''}
-                alt="Intern"
-                className="overview-box__img"
-              />
-              <span className="overview-box__label">Intern</span>
-              <span className="overview-box__text">Max Smith</span>
-            </div>
+            <h2 className="heading-secondary mb-lg" style={headingStyle}>
+              Your tour guides
+            </h2>
+            {guides.map(guide => (
+              <Detail
+                label={
+                  guide.role === 'lead-guide' ? 'Lead Guide' : 'Tour Guide'
+                }
+                text={guide.name}
+                key={guide._id}
+              >
+                <img
+                  src={`${process.env.PUBLIC_URL}/img/users/${guide.photo}`}
+                  alt={guide.name}
+                  className="overview-box__img"
+                />
+              </Detail>
+            ))}
           </div>
         </div>
       </div>
 
       <div className="description-box">
-        <h2 className="heading-secondary mb-lg">
-          About the park camper tour
-        </h2>
-        <p className="description__text">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur.
-        </p>
-        <p className="description__text">
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-          dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident, sunt in culpa qui officia deserunt mollit anim id est
-          laborum!
-        </p>
+        <h2
+          className="heading-secondary mb-lg"
+          style={headingStyle}
+        >{`About ${name} tour`}</h2>
+        <p className="description__text">{description.split('\n')[0]}</p>
+        <p className="description__text">{description.split('\n')[1]}</p>
       </div>
     </section>
   );

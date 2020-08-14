@@ -36,6 +36,8 @@ router
     tourController.createTour
   );
 
+router.route('/slug/:slug').get(tourController.getTourBySlug);
+
 router
   .route('/:id')
   .get(tourController.getTour)
