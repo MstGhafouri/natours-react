@@ -52,7 +52,7 @@ const TourMap = ({ locations, season }) => {
         left: 100
       }
     });
-  }, [locations]);
+  }, [locations, season]);
 
   return (
     <section className="section-map">
