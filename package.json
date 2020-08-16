@@ -10,7 +10,8 @@
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "prod": "cross-env NODE_ENV=production npm run dev",
     "server:prod": "cross-env NODE_ENV=production nodemon server/server.js",
-    "debug": "ndb server/server.js"
+    "debug": "ndb server/server.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "Mostafa Ghafouri",
   "license": "ISC",
