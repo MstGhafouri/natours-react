@@ -9,6 +9,14 @@ import { Tab } from 'semantic-ui-react';
 
 const panes = [
   {
+    menuItem: { key: 'photo', icon: 'image outline', content: 'Your photo' },
+    render: () => (
+      <Tab.Pane>
+        <UserPhoto />
+      </Tab.Pane>
+    )
+  },
+  {
     menuItem: {
       key: 'account',
       icon: 'address card outline',
@@ -17,14 +25,6 @@ const panes = [
     render: () => (
       <Tab.Pane>
         <AccountForm />
-      </Tab.Pane>
-    )
-  },
-  {
-    menuItem: { key: 'photo', icon: 'image outline', content: 'Your photo' },
-    render: () => (
-      <Tab.Pane>
-        <UserPhoto />
       </Tab.Pane>
     )
   },
