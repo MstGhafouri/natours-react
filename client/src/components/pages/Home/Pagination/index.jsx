@@ -18,8 +18,6 @@ class Paginate extends React.Component {
   };
 
   componentDidUpdate(prevProps) {
-    console.log('prev ', prevProps);
-    console.log(this.state);
     const { totalDocuments, page } = this.props;
 
     prevProps.totalDocuments !== totalDocuments &&
@@ -55,8 +53,6 @@ class Paginate extends React.Component {
       showPreviousAndNextNav,
       totalPages
     } = this.state;
-
-    console.log('from insde ', this.state);
 
     return (
       <Pagination
