@@ -6,6 +6,9 @@ import {
   loginUserRequest,
   loginUserSuccess,
   loginUserFailure,
+  resetPasswordRequest,
+  resetPasswordSuccess,
+  resetPasswordFailure,
   logoutUserRequest,
   logoutUserSuccess,
   logoutUserFailure,
@@ -69,6 +72,28 @@ export const logout = () => {
     } catch (error) {
       dispatch({
         type: logoutUserFailure,
+        payload: error.response.data.message
+      });
+      toastr.error('Error', error.response.data.message);
+    }
+  };
+};
+
+export const resetUserPassword = data => {
+  return async dispatch => {
+    try {
+      dispatch({ type: resetPasswordRequest });
+      await natoursApi.post('/users/forgotPassword', data);
+      dispatch({
+        type: resetPasswordSuccess
+      });
+      toastr.info(
+        'Email sent!',
+        'Check your email for a link to reset your password'
+      );
+    } catch (error) {
+      dispatch({
+        type: resetPasswordFailure,
         payload: error.response.data.message
       });
       toastr.error('Error', error.response.data.message);
