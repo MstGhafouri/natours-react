@@ -67,6 +67,12 @@ body {
   width: 150%;
 }
 
+.ui.avatar.image {
+  width: 2.5em;
+  height: 2.5em;
+  margin-right: 0.4em;
+}
+
 .ui.search .results {
   max-height: 65vh;
   overflow-y: auto;

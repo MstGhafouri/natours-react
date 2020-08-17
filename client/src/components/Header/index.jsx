@@ -1,10 +1,13 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { NavLink, useLocation } from 'react-router-dom';
-import { Menu, Image, Icon } from 'semantic-ui-react';
+import { Menu, Image } from 'semantic-ui-react';
 
 import SearchBar from './SearchBar';
+import LoginSignup from './LoginSignup';
+import UserItems from './UserItems';
 
-const Header = () => {
+const Header = ({ currentUser }) => {
   const pathname = useLocation().pathname;
 
   return (
@@ -28,21 +31,12 @@ const Header = () => {
         </Menu.Item>
       )}
       <Menu.Menu position="right">
-        {pathname !== '/login' && (
-          <Menu.Item as={NavLink} exact className="animated-item" to="/login">
-            <Icon name="sign-in" />
-            Log in
-          </Menu.Item>
-        )}
-        {pathname !== '/signup' && (
-          <Menu.Item as={NavLink} exact className="animated-item" to="/signup">
-            <Icon name="plus" />
-            Sign up
-          </Menu.Item>
-        )}
+        {currentUser ? <UserItems /> : <LoginSignup />}
       </Menu.Menu>
     </Menu>
   );
 };
 
-export default Header;
+const mapStateToProps = ({ user: { currentUser } }) => ({ currentUser });
+
+export default connect(mapStateToProps)(Header);
