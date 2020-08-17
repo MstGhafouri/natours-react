@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Router, Route, Switch, Redirect } from 'react-router-dom';
 
 import history from '../history';
@@ -13,6 +14,8 @@ import NotFound from './pages/404';
 
 class Routes extends React.Component {
   render() {
+    const { currentUser } = this.props;
+
     return (
       <Router history={history}>
         <Layout>
@@ -24,16 +27,16 @@ class Routes extends React.Component {
               <Tour />
             </Route>
             <Route path="/login" exact>
-              <Login />
+              {currentUser ? <Redirect to="/" /> : <Login />}
             </Route>
             <Route path="/signup" exact>
-              <SignUp />
+              {currentUser ? <Redirect to="/" /> : <SignUp />}
             </Route>
             <Route path="/password-reset" exact>
-              <PasswordReset />
+              {currentUser ? <Redirect to="/" /> : <PasswordReset />}
             </Route>
             <Route path="/me/settings" exact>
-              <UserPanel />
+              {currentUser ? <UserPanel /> : <Redirect to="/login" />}
             </Route>
             <Redirect from="/me" to="/me/settings" />
             <Route path="/404" exact>
@@ -47,4 +50,6 @@ class Routes extends React.Component {
   }
 }
 
-export default Routes;
+const mapStateToProps = ({ user: { currentUser } }) => ({ currentUser });
+
+export default connect(mapStateToProps)(Routes);
