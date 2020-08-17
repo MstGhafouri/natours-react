@@ -11,7 +11,7 @@ import { errorReducer } from './error';
 export default combineReducers({
   tours: toursReducer,
   selectedTour: tourReducer,
-  currentUser: userReducer,
+  user: userReducer,
   totalDocuments: countTotalDocsReducer,
   queryParams: queryReducer,
   loading: loadingReducer,

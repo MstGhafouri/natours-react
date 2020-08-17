@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { Header, Grid, Image, Divider, Button } from 'semantic-ui-react';
 
-// import pic from '../../../../../assets/img/tours/tour-1-cover.jpg';
 import ContentBox from '../../../../utils/ContentBox';
 import DropzoneInput from './DropzoneInput';
 import CropperInput from './CropperInput';
 
-const UserPhoto = () => {
+const UserPhoto = ({ currentUser }) => {
   const [files, setFiles] = useState([]);
   const [image, setImage] = useState(null);
 
@@ -25,7 +25,9 @@ const UserPhoto = () => {
     <div className="user-panel__photo">
       <ContentBox headingText="Your photo">
         <Image
-          src={''}
+          src={`${process.env.PUBLIC_URL}/img/users/${
+            currentUser ? currentUser.photo : 'default.jpg'
+          }`}
           bordered
           style={{ width: '9rem', height: '8rem', borderRadius: '50%' }}
         />
@@ -76,4 +78,6 @@ const UserPhoto = () => {
   );
 };
 
-export default UserPhoto;
+const mapStateToProps = ({ user: { currentUser } }) => ({ currentUser });
+
+export default connect(mapStateToProps)(UserPhoto);
