@@ -1,13 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import { colorConfig } from '../../../utils';
 import CustomBtn from '../../../utils/CustomBtn';
 
-const TourCTA = ({ duration, images, season }) => {
+const TourCTA = ({ duration, images, season, currentUser }) => {
   return (
     <section className="section-cta">
       <div className="cta">
-        <div className="cta__img cta__img--logo" style={{ background: `linear-gradient(to right bottom, rgb(${colorConfig[season][0]}), rgb(${colorConfig[season][1]}))` }}>
+        <div
+          className="cta__img cta__img--logo"
+          style={{
+            background: `linear-gradient(to right bottom, rgb(${colorConfig[season][0]}), rgb(${colorConfig[season][1]}))`
+          }}
+        >
           <img
             src={`${process.env.PUBLIC_URL}/img/icons/logo-white.png`}
             alt="Natours logo"
@@ -39,9 +45,10 @@ const TourCTA = ({ duration, images, season }) => {
           <CustomBtn
             classes="custom-btn span-all-rows"
             rgb={colorConfig[season][1]}
-            isLink={false}
+            isLink={!!!currentUser}
+            linkTo="/login"
           >
-            Book tour now!
+            {currentUser ? 'Book tour now' : 'Log in to book'}
           </CustomBtn>
         </div>
       </div>
@@ -49,4 +56,6 @@ const TourCTA = ({ duration, images, season }) => {
   );
 };
 
-export default TourCTA;
+const mapStateToProps = ({ user: { currentUser } }) => ({ currentUser });
+
+export default connect(mapStateToProps)(TourCTA);
