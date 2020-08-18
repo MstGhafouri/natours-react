@@ -2,8 +2,6 @@ import React, { useEffect } from 'react';
 import { Grid, Image, Header } from 'semantic-ui-react';
 import CustomBtn from '../../utils/CustomBtn';
 
-// import '' from '../../../assets/img/404.svg';
-
 const NotFound = () => {
   useEffect(() => {
     document.title = '404 Not Found';
@@ -18,7 +16,11 @@ const NotFound = () => {
     >
       <Grid.Row>
         <Grid.Column width="8">
-          <Image src={''} alt="Not found!" fluid />
+          <Image
+            src={`${process.env.PUBLIC_URL}/img/404.svg`}
+            alt="Not found!"
+            fluid
+          />
         </Grid.Column>
         <Grid.Column width="8">
           <Header size="huge">404</Header>
