@@ -10,7 +10,7 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import UserPanel from './pages/UserPanel/Account';
 import PasswordReset from './pages/PasswordReset';
-import NotFound from './pages/404';
+import NotFound from './pages/NotFound';
 
 class Routes extends React.Component {
   render() {
