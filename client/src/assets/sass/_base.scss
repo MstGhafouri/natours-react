@@ -77,3 +77,7 @@ body {
   max-height: 65vh;
   overflow-y: auto;
 }
+
+.dropzone:focus {
+  outline: none;
+}

@@ -29,3 +29,7 @@ export const resetPasswordFailure = "RESET_PASSWORD_FAILURE";
 export const changePasswordRequest = "CHANGE_PASSWORD_REQUEST";
 export const changePasswordSuccess = "CHANGE_PASSWORD_SUCCESS";
 export const changePasswordFailure = "CHANGE_PASSWORD_FAILURE";
+
+export const uploadPhotoRequest = "UPLOAD_PHOTO_REQUEST";
+export const uploadPhotoSuccess = "UPLOAD_PHOTO_SUCCESS";
+export const uploadPhotoFailure = "UPLOAD_PHOTO_FAILURE";

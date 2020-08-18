@@ -2,7 +2,8 @@ import {
   loginUserSuccess,
   signUpUserSuccess,
   logoutUserSuccess,
-  changePasswordSuccess
+  changePasswordSuccess,
+  uploadPhotoSuccess
 } from '../../actions/types';
 
 const INITIAL_STATE = {
@@ -13,7 +14,8 @@ export const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case loginUserSuccess:
     case signUpUserSuccess:
-    case changePasswordSuccess:  
+    case changePasswordSuccess:
+    case uploadPhotoSuccess:    
       return { ...state, currentUser: action.payload };
     case logoutUserSuccess:
       return { ...state, currentUser: null };

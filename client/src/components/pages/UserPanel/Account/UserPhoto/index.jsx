@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Header, Grid, Image, Divider, Button } from 'semantic-ui-react';
 
+import { loadingSelector as createLoadingSelector } from '../../../../../redux/reducers/loading';
+import { uploadUserPhoto } from '../../../../../redux/actions/user';
 import ContentBox from '../../../../utils/ContentBox';
 import DropzoneInput from './DropzoneInput';
 import CropperInput from './CropperInput';
 
-const UserPhoto = ({ currentUser }) => {
+const UserPhoto = ({ currentUser, uploadUserPhoto, isLoading }) => {
   const [files, setFiles] = useState([]);
   const [image, setImage] = useState(null);
 
@@ -19,6 +21,11 @@ const UserPhoto = ({ currentUser }) => {
   const handleCancelCrop = () => {
     setFiles([]);
     setImage(null);
+  };
+
+  const handleUploadPhoto = async () => {
+    await uploadUserPhoto(image);
+    handleCancelCrop();
   };
 
   return (
@@ -62,7 +69,13 @@ const UserPhoto = ({ currentUser }) => {
                   }}
                 ></div>
                 <Button.Group>
-                  <Button icon="check" positive style={{ width: '10rem' }} />
+                  <Button
+                    className={isLoading ? 'loading' : ''}
+                    icon="check"
+                    positive
+                    style={{ width: '10rem' }}
+                    onClick={handleUploadPhoto}
+                  />
                   <Button
                     icon="close"
                     style={{ width: '10rem' }}
@@ -78,6 +91,11 @@ const UserPhoto = ({ currentUser }) => {
   );
 };
 
-const mapStateToProps = ({ user: { currentUser } }) => ({ currentUser });
+const loadingSelector = createLoadingSelector(['UPLOAD_PHOTO']);
 
-export default connect(mapStateToProps)(UserPhoto);
+const mapStateToProps = state => ({
+  isLoading: loadingSelector(state),
+  currentUser: state.user.currentUser
+});
+
+export default connect(mapStateToProps, { uploadUserPhoto })(UserPhoto);

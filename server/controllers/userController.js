@@ -1,3 +1,4 @@
+const path = require('path');
 const multer = require('multer');
 const sharp = require('sharp');
 const User = require('../models/userModel');
@@ -39,7 +40,13 @@ exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
     .resize(500, 500)
     .toFormat('jpeg')
     .jpeg({ quality: 90 })
-    .toFile(`public/img/users/${req.file.filename}`);
+    .toFile(
+      path.resolve(
+        __dirname,
+        '../../client',
+        `public/img/users/${req.file.filename}`
+      )
+    );
 
   next();
 });

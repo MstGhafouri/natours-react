@@ -12,6 +12,9 @@ import {
   changePasswordRequest,
   changePasswordSuccess,
   changePasswordFailure,
+  uploadPhotoRequest,
+  uploadPhotoSuccess,
+  uploadPhotoFailure,
   logoutUserRequest,
   logoutUserSuccess,
   logoutUserFailure,
@@ -120,6 +123,33 @@ export const changeUserPassword = (data, token) => {
     } catch (error) {
       dispatch({
         type: changePasswordFailure,
+        payload: error.response.data.message
+      });
+      toastr.error('Error', error.response.data.message);
+    }
+  };
+};
+
+export const uploadUserPhoto = file => {
+  return async dispatch => {
+    try {
+      const formData = new FormData();
+      formData.append('photo', file);
+
+      dispatch({ type: uploadPhotoRequest });
+      const response = await natoursApi.patch('/users/updateMe', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      dispatch({
+        type: uploadPhotoSuccess,
+        payload: response.data.data.user
+      });
+      toastr.success('Success', 'Your photo has been updated successfully');
+    } catch (error) {
+      dispatch({
+        type: uploadPhotoFailure,
         payload: error.response.data.message
       });
       toastr.error('Error', error.response.data.message);
