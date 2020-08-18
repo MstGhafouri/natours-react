@@ -3,7 +3,9 @@ import {
   signUpUserSuccess,
   logoutUserSuccess,
   changePasswordSuccess,
-  uploadPhotoSuccess
+  uploadPhotoSuccess,
+  updateUserDataSuccess,
+  updateUserPasswordSuccess
 } from '../../actions/types';
 
 const INITIAL_STATE = {
@@ -16,6 +18,8 @@ export const userReducer = (state = INITIAL_STATE, action) => {
     case signUpUserSuccess:
     case changePasswordSuccess:
     case uploadPhotoSuccess:    
+    case updateUserDataSuccess:
+    case updateUserPasswordSuccess:    
       return { ...state, currentUser: action.payload };
     case logoutUserSuccess:
       return { ...state, currentUser: null };

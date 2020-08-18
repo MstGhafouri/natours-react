@@ -13,6 +13,9 @@ const required = (value, allValues, props, name) => {
     case 'passwordConfirm':
       fieldName = 'password confirm';
       break;
+    case 'currentPassword':
+      fieldName = 'current password';
+      break;
     default:
       fieldName = 'name';
   }

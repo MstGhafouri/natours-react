@@ -33,3 +33,11 @@ export const changePasswordFailure = "CHANGE_PASSWORD_FAILURE";
 export const uploadPhotoRequest = "UPLOAD_PHOTO_REQUEST";
 export const uploadPhotoSuccess = "UPLOAD_PHOTO_SUCCESS";
 export const uploadPhotoFailure = "UPLOAD_PHOTO_FAILURE";
+
+export const updateUserDataRequest = "UPDATE_USER_DATA_REQUEST";
+export const updateUserDataSuccess = "UPDATE_USER_DATA_SUCCESS";
+export const updateUserDataFailure = "UPDATE_USER_DATA_FAILURE";
+
+export const updateUserPasswordRequest = "UPDATE_USER_PASSWORD_REQUEST";
+export const updateUserPasswordSuccess = "UPDATE_USER_PASSWORD_SUCCESS";
+export const updateUserPasswordFailure = "UPDATE_USER_PASSWORD_FAILURE";
