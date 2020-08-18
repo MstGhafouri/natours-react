@@ -9,6 +9,9 @@ import {
   resetPasswordRequest,
   resetPasswordSuccess,
   resetPasswordFailure,
+  changePasswordRequest,
+  changePasswordSuccess,
+  changePasswordFailure,
   logoutUserRequest,
   logoutUserSuccess,
   logoutUserFailure,
@@ -94,6 +97,29 @@ export const resetUserPassword = data => {
     } catch (error) {
       dispatch({
         type: resetPasswordFailure,
+        payload: error.response.data.message
+      });
+      toastr.error('Error', error.response.data.message);
+    }
+  };
+};
+
+export const changeUserPassword = (data, token) => {
+  return async dispatch => {
+    try {
+      dispatch({ type: changePasswordRequest });
+      const response = await natoursApi.patch(
+        `/users/resetPassword/${token}`,
+        data
+      );
+      dispatch({
+        type: changePasswordSuccess,
+        payload: response.data.data.user
+      });
+      toastr.success('Success', 'Your password has been changed successfully');
+    } catch (error) {
+      dispatch({
+        type: changePasswordFailure,
         payload: error.response.data.message
       });
       toastr.error('Error', error.response.data.message);

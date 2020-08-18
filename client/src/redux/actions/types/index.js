@@ -25,3 +25,7 @@ export const signUpUserFailure = "SIGN_UP_USER_FAILURE";
 export const resetPasswordRequest = "RESET_PASSWORD_REQUEST";
 export const resetPasswordSuccess = "RESET_PASSWORD_SUCCESS";
 export const resetPasswordFailure = "RESET_PASSWORD_FAILURE";
+
+export const changePasswordRequest = "CHANGE_PASSWORD_REQUEST";
+export const changePasswordSuccess = "CHANGE_PASSWORD_SUCCESS";
+export const changePasswordFailure = "CHANGE_PASSWORD_FAILURE";

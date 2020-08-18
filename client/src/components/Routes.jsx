@@ -35,6 +35,9 @@ class Routes extends React.Component {
             <Route path="/password-reset" exact>
               {currentUser ? <Redirect to="/" /> : <PasswordReset />}
             </Route>
+            <Route path="/password-reset/:token" exact>
+              {currentUser ? <Redirect to="/" /> : <PasswordReset />}
+            </Route>
             <Route path="/me/settings" exact>
               {currentUser ? <UserPanel /> : <Redirect to="/login" />}
             </Route>
