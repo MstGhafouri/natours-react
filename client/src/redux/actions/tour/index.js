@@ -1,3 +1,5 @@
+import { toastr } from 'react-redux-toastr';
+import history from '../../../history';
 import natoursApi from '../../../api/natoursApi';
 import {
   getToursRequest,
@@ -43,7 +45,9 @@ export const fetchTour = slug => {
       const response = await natoursApi.get(`/tours/slug/${slug}`);
       dispatch({ type: getTourSuccess, payload: response.data.data.tour });
     } catch (error) {
-      dispatch({ type: getTourFailure, payload: error });
+      dispatch({ type: getTourFailure, payload: error.response.data.message });
+      toastr.error('Error', error.response.data.message);
+      if (error.response.data.error.statusCode === 404) history.push('/404');
     }
   };
 };
