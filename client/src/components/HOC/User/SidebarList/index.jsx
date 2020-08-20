@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { List } from 'semantic-ui-react';
 
-import ListItem from './ListItem';
+
 import AdminItems from './AdminItems';
 import UserItems from './UserItems';
 
