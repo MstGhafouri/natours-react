@@ -41,3 +41,11 @@ export const updateUserDataFailure = "UPDATE_USER_DATA_FAILURE";
 export const updateUserPasswordRequest = "UPDATE_USER_PASSWORD_REQUEST";
 export const updateUserPasswordSuccess = "UPDATE_USER_PASSWORD_SUCCESS";
 export const updateUserPasswordFailure = "UPDATE_USER_PASSWORD_FAILURE";
+
+export const deleteUserRequest = "DELETE_USER_REQUEST";
+export const deleteUserSuccess = "DELETE_USER_SUCCESS";
+export const deleteUserFailure = "DELETE_USER_FAILURE";
+
+export const addUserRequest = "ADD_USER_REQUEST";
+export const addUserSuccess = "ADD_USER_SUCCESS";
+export const addUserFailure = "ADD_USER_FAILURE";

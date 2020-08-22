@@ -51,7 +51,7 @@ exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
   next();
 });
 
-const filterObj = (obj, ...allowedFields) => {
+exports.filterObj = (obj, ...allowedFields) => {
   const filteredObj = {};
   Object.keys(obj).forEach(key => {
     if (allowedFields.includes(key)) filteredObj[key] = obj[key];
@@ -100,9 +100,13 @@ exports.deleteMe = catchAsync(async (req, res, next) => {
 });
 
 exports.createUser = catchAsync(async (req, res, next) => {
-  res.status(500).json({
+  const newUser = await User.create(req.body);
+
+  res.status(201).json({
     status: 'success',
-    message: 'This route has not been created. Please use /signup instead!'
+    data: {
+      user: newUser
+    }
   });
 });
 

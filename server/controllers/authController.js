@@ -5,6 +5,7 @@ const User = require('../models/userModel');
 const AppError = require('../utils/appError');
 const catchAsync = require('../utils/catchAsync');
 const Email = require('../utils/email');
+const { filterObj } = require('./userController');
 
 const signToken = id =>
   jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -36,7 +37,15 @@ const createAndSendToken = (user, statusCode, req, res) => {
 };
 
 exports.signup = catchAsync(async (req, res, next) => {
-  const newUser = await User.create(req.body);
+  const filteredBody = filterObj(
+    req.body,
+    'name',
+    'email',
+    'password',
+    'passwordConfirm'
+  );
+
+  const newUser = await User.create(filteredBody);
 
   const url = `${req.protocol}://${req.get('host')}/me`;
   await new Email(newUser, url).sendWelcome();

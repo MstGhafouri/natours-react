@@ -38,6 +38,10 @@ body {
   margin-bottom: 3.5rem !important;
 }
 
+.floated-right {
+  float: right !important;
+}
+
 .font-w-normal {
   font-weight: 400 !important;
 }
@@ -56,6 +60,7 @@ body {
   );
   background-clip: text;
   color: transparent;
+  text-shadow: 2rem 0 1rem rgba($color-black, 0.1);
 }
 
 ::selection {
@@ -63,8 +68,27 @@ body {
   color: $color-white;
 }
 
+mark {
+  background-color: $color-grey;
+  color: $color-white;
+  padding: 0 5px;
+}
+
+.alignItems-base {
+  align-items: baseline !important;
+}
+
 .ui.fluid.search .results {
   width: 150%;
+}
+
+.ui.selection .item > span {
+  font-size: 1.4rem;
+  font-weight: 300;
+}
+
+.ui.labeled.icon.button>.icon {
+  background-color: transparent;
 }
 
 .ui.avatar.image {

@@ -16,12 +16,15 @@ const required = (value, allValues, props, name) => {
     case 'currentPassword':
       fieldName = 'current password';
       break;
+    case 'role':
+      fieldName = 'a role';
+      break;
     default:
       fieldName = 'name';
   }
   return value || typeof value === 'number'
     ? undefined
-    : `Please provide your ${fieldName}`;
+    : `Please ${name === 'role' ? 'select a role': 'provide your ' + fieldName}`;
 };
 
 const minLength = min => value =>

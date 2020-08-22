@@ -19,12 +19,17 @@
   & .ui.form .field {
     margin-bottom: 2rem;
 
+    & > .field {
+      margin-bottom: 0;
+    }
+
     & > label {
       color: $color-grey;
       font-size: 1.6rem;
     }
 
-    & > input {
+    & > input,
+    & .ui.selection {
       font-family: inherit;
       color: inherit;
       font-size: 1.5rem;
@@ -39,9 +44,8 @@
 
 .settings-form {
   & .ui.form .field {
-
     & > input {
-     width: 50%;
+      width: 50%;
     }
   }
 }

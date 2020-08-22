@@ -20,6 +20,10 @@
       outline: none;
     }
 
+    & > i.icon {
+      margin-right: 5px;
+    }
+
     &::before {
       content: '';
       background-color: $color-white;

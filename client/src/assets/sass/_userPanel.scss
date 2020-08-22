@@ -89,3 +89,15 @@
     border: dashed 3px $color-primary;
   }
 }
+
+.table-container {
+  padding: 3rem 2rem;
+
+  & > .ui.header {
+    @extend %customHeading;
+
+    &.large {
+      margin-bottom: 5rem;
+    }
+  }
+}

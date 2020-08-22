@@ -177,3 +177,41 @@ export const updateUserPassword = data => {
     }
   };
 };
+
+export const deleteUser = id => {
+  return async dispatch => {
+    try {
+      dispatch({ type: type.deleteUserRequest });
+      await natoursApi.delete(`/users/${id}`);
+      dispatch({
+        type: type.deleteUserSuccess
+      });
+      toastr.success('Success', 'User deleted successfully');
+    } catch (error) {
+      dispatch({
+        type: type.deleteUserFailure,
+        payload: error.response.data.message
+      });
+      toastr.error('Error', error.response.data.message);
+    }
+  };
+};
+
+export const addUser = data => {
+  return async dispatch => {
+    try {
+      dispatch({ type: type.addUserRequest });
+      await natoursApi.post('/users/', data);
+      dispatch({
+        type: type.addUserSuccess
+      });
+      toastr.success('Success', 'User has been created successfully');
+    } catch (error) {
+      dispatch({
+        type: type.addUserFailure,
+        payload: error.response.data.message
+      });
+      toastr.error('Error', error.response.data.message);
+    }
+  };
+};

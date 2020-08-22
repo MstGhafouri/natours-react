@@ -17,7 +17,7 @@ const userLinks = [
     text: 'Settings',
     icon: 'settings',
     linkTo: '/me/settings',
-    isActive: true
+    isActive: false
   },
   {
     text: 'My Bookmarks',
