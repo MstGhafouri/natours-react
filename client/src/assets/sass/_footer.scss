@@ -2,8 +2,30 @@
   margin: 0;
   padding: 2rem 3rem;
 
+  @include respond(600) {
+    padding: 1rem 1.5rem;
+  }
+
   & .sub.header {
-    text-align: center;
+    text-align: right;
+    @include respond(900) {
+      text-align: center;
+      font-size: 1.5rem;
+    }
+  }
+
+  & .ui.image {
+    @include respond(900) {
+      margin: 0 auto;
+      margin-bottom: 2rem;
+    }
+  }
+
+  & .column.footer__list-wrapper {
+    @include respond(900) {
+      display: flex;
+      justify-content: center;
+    }
   }
 }
 

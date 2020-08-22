@@ -3,14 +3,18 @@ import { Grid, Image, List, Header } from 'semantic-ui-react';
 
 const Footer = () => {
   return (
-    <Grid className="footer">
-      <Grid.Column width={10}>
-        <Image src={`${process.env.PUBLIC_URL}/img/icons/logo-green.png`} alt="Natours" className="navigation__logo" />
+    <Grid stackable columns={2} className="footer">
+      <Grid.Column>
+        <Image
+          src={`${process.env.PUBLIC_URL}/img/icons/logo-green.png`}
+          alt="Natours"
+          className="navigation__logo"
+        />
       </Grid.Column>
-      <Grid.Column width={6}>
+      <Grid.Column>
         <Grid>
           <Grid.Row>
-            <Grid.Column>
+            <Grid.Column className="footer__list-wrapper">
               <List celled floated="right" horizontal className="footer__list">
                 <List.Item href="#">About us</List.Item>
                 <List.Item href="#">Download Apps</List.Item>

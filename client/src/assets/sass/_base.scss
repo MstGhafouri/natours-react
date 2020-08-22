@@ -8,6 +8,22 @@
 
 html {
   font-size: 62.5%; // 1rem = 10px
+
+  @include respond(1800) {
+    font-size: 75%;
+  }
+
+  @include respond(1100) {
+    font-size: 56.25%;
+  }
+
+  @include respond(900) {
+    font-size: 50%;
+  }
+
+  @include respond(600) {
+    font-size: 43.75%;
+  }
 }
 
 body {
