@@ -17,7 +17,7 @@ html {
     font-size: 56.25%;
   }
 
-  @include respond(900) {
+  @include respond(903) {
     font-size: 50%;
   }
 
@@ -103,7 +103,7 @@ mark {
   font-weight: 300;
 }
 
-.ui.labeled.icon.button>.icon {
+.ui.labeled.icon.button > .icon {
   background-color: transparent;
 }
 
@@ -116,6 +116,15 @@ mark {
 .ui.search .results {
   max-height: 65vh;
   overflow-y: auto;
+}
+
+.ui.attached.tabular.menu > a.item {
+  font-size: 1.3rem;
+}
+
+.ui.toggle.checkbox input:focus:checked ~ label:before,
+.ui.toggle.checkbox input:checked ~ label:before {
+  background-color: $color-primary !important;
 }
 
 .dropzone:focus {

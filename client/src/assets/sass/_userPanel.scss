@@ -7,16 +7,62 @@
   overflow: hidden;
   box-shadow: 0 2.5rem 8rem 2rem rgba($color-black, 0.07);
 
+  @include respond(1200) {
+    margin: 5rem auto 2rem;
+  }
+
+  @include respond(903) {
+    margin: 3rem auto 2rem;
+    min-height: auto;
+    height: 75vh;
+  }
+
+  &__sidebar {
+    @include respond(903) {
+      position: absolute !important;
+      transition: transform 1s;
+      transform: translateX(-100%);
+      z-index: 100;
+    }
+  }
+
+  &__content.twelve.wide.column {
+    padding-left: 0 !important;
+  }
+
+  .ui.grid > .row > [class*='twelve wide'].column {
+    @include respond(903) {
+      width: 100% !important;
+    }
+  }
+
   & .ui.attached.segment {
     padding: 3rem 4rem;
+
+    @include respond(900) {
+      padding: 2.5rem 3rem;
+    }
+    
+    @include respond(600) {
+      padding: 2rem 1rem;
+    }
   }
 
   &__photo {
+    img.ui.image {
+      @include respond(903) {
+        margin: 0 auto;
+      }
+    }
+
     & > .ui.container > .ui.header {
       @extend %customHeading;
 
       &.large {
         margin-bottom: 1rem;
+        @include respond(903) {
+          text-align: center;
+        }
       }
     }
   }
@@ -34,6 +80,14 @@
       padding: 4rem 0;
       font-size: 1.5rem;
 
+      @include respond(900) {
+        padding: 3rem 0;
+      }
+      
+      @include respond(600) {
+        padding: 2rem 0;
+      }
+
       & > .ui.divider {
         margin-top: 3rem;
         color: $color-light;
@@ -46,12 +100,24 @@
         margin: 2rem 0;
         transition: all 0.4s;
 
+        @include respond(900) {
+          padding: 0.8rem 3rem;
+        }
+        
+        @include respond(600) {
+          padding: 0.5rem 2rem;
+        }
+
         & > i.icon {
           color: $color-light;
         }
 
         &.active {
           border-left: 4px solid $color-light;
+
+          @include respond(600) {
+            border-left: 3px solid $color-light;
+          }
         }
 
         &:hover:not(.active) {
@@ -65,6 +131,16 @@
           text-transform: uppercase;
         }
       }
+    }
+  }
+
+  .ui.grid > .row > [class*='four wide'].column {
+    @include respond(903) {
+      width: 30% !important;
+    }
+
+    @include respond(600) {
+      width: 45% !important;
     }
   }
 }
@@ -99,5 +175,18 @@
     &.large {
       margin-bottom: 5rem;
     }
+  }
+}
+
+.responsive-box {
+  padding: 0.5rem 2rem;
+  background-color: $color-light;
+  display: flex;
+  align-items: center;
+
+  & > label {
+    margin-left: 0.5rem;
+    font-size: 1.4rem;
+    font-weight: 300;
   }
 }

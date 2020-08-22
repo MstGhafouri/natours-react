@@ -42,12 +42,12 @@ const UserPhoto = ({ currentUser, uploadUserPhoto, isLoading }) => {
         <Grid>
           <Grid.Row />
           <Grid.Column width={4}>
-            <Header color="grey" sub content="Step 1 - Add Photo" />
+            <Header color="grey" as="h4" content="Step 1 - Add Photo" />
             <DropzoneInput setFiles={setFiles} />
           </Grid.Column>
           <Grid.Column width={1} />
           <Grid.Column width={4}>
-            <Header sub color="grey" content="Step 2 - Resize image" />
+            <Header color="grey" as="h4" content="Step 2 - Resize image" />
             {files.length > 0 && (
               <CropperInput
                 setImage={setImage}
@@ -57,7 +57,7 @@ const UserPhoto = ({ currentUser, uploadUserPhoto, isLoading }) => {
           </Grid.Column>
           <Grid.Column width={1} />
           <Grid.Column width={4}>
-            <Header sub color="grey" content="Step 3 - Preview & Upload" />
+            <Header color="grey" as="h4" content="Step 3 - Preview & Upload" />
             {files.length > 0 && (
               <React.Fragment>
                 <div

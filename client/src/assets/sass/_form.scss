@@ -13,6 +13,10 @@
 
     &.large {
       margin-bottom: 5rem;
+      @include respond(903) {
+        margin-bottom: 3rem;
+        text-align: center;
+      }
     }
   }
 
@@ -43,9 +47,37 @@
 }
 
 .settings-form {
-  & .ui.form .field {
+  & .ui.form > .field {
+    @include respond(903) {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    & > label {
+      @include respond(903) {
+        width: 50%;
+        margin: 0 auto;
+      }
+      @include respond(600) {
+        width: 70%;
+      }
+    }
+
     & > input {
       width: 50%;
+      @include respond(600) {
+        width: 70%;
+      }
+    }
+  }
+
+  & button.custom-btn {
+    @include respond(903) {
+      margin-left: 25%;
+    }
+    @include respond(600) {
+      margin-left: 15%;
     }
   }
 }
