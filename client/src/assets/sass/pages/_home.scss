@@ -1,13 +1,36 @@
 .section-tours {
   padding: 3rem 13rem 7rem;
 
+  @include respond(903) {
+    padding: 3rem 9rem 5rem;
+  }
+
+  @include respond(600) {
+    padding: 2.5rem 9rem 4rem;
+  }
+
+  @include respond(400) {
+    padding: 2.5rem 7rem 4rem;
+  }
+
+  & > div[name='header'] {
+    @include respond(600) {
+      width: 90vw;
+      margin-left: -10vw;
+    }
+  }
+
   .ui.segment.tours-heading {
     margin: 1rem 1.8rem 5rem;
   }
 }
 
-.ui.grid > .column.card-container {
+.ui.grid.stackable > .column.card-container {
   padding: 2rem 3rem;
+
+  @include respond(600) {
+    margin-bottom: 3rem !important;
+  }
 }
 
 .card {
@@ -46,6 +69,9 @@
 
   &__details {
     padding: 2.5rem 3rem;
+    @include respond(903) {
+      padding: 2rem 2.5rem;
+    }
   }
 
   &__sub-heading {
@@ -76,6 +102,10 @@
     border-top: 1px solid darken($color-light, $amount: 7);
     font-size: 1.4rem;
     margin-top: auto;
+
+    @include respond(903) {
+      padding: 2rem 2.5rem;
+    }
 
     &-value {
       font-weight: 700;
