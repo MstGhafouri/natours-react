@@ -190,6 +190,7 @@
 
 .table-container {
   padding: 3rem 2rem;
+  overflow-x: auto;
 
   & > .ui.header {
     @extend %customHeading;

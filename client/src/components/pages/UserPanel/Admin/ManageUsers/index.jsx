@@ -64,7 +64,7 @@ const ManageUsersTable = ({ isLoading }) => {
     <UserLayout>
       <div className="table-container">
         <Header size="large">Manage users</Header>
-        <Table singleLine selectable striped sortable>
+        <Table singleLine selectable striped sortable unstackable>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell
