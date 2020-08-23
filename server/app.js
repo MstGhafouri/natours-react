@@ -15,6 +15,7 @@ const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const bookingRouter = require('./routes/bookingRoutes');
+const bookingController = require('./controllers/bookingController');
 
 const app = express();
 // Enable trust proxy for heroku headers
@@ -41,6 +42,12 @@ const limiter = rateLimit({
   }
 });
 app.use('/api', limiter);
+
+app.post(
+  '/webhook-checkout',
+  express.raw({ type: 'application/json' }),
+  bookingController.webhookCheckout
+);
 
 if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev')); // Development logger
