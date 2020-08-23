@@ -18,9 +18,9 @@ const ReviewCard = ({ user: { name, photo }, review, rating, iconColor }) => {
       <div className="reviews__rating">
         {[1, 2, 3, 4, 5].map(start => (
           <Icon
-            className="star"
+            className={`star ${rating >= start ? '' : 'disabled'}`}
             key={start}
-            color={`${rating >= start ? iconColor : 'grey'}`}
+            color={iconColor}
           />
         ))}
       </div>

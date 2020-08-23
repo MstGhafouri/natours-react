@@ -49,9 +49,19 @@
 
   &__photo {
     img.ui.image {
+      width: 12rem;
+      height: 11.5rem;
+      border-radius: 50%;
+
       @include respond(903) {
         margin: 0 auto;
+        width: 14rem;
+        height: 13.5rem;
       }
+    }
+
+    .ui.divider {
+      margin: 2.5rem 0 2rem;
     }
 
     & > .ui.container > .ui.header {

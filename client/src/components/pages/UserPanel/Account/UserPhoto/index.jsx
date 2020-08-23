@@ -36,7 +36,6 @@ const UserPhoto = ({ currentUser, uploadUserPhoto, isLoading }) => {
             currentUser ? currentUser.photo : 'default.jpg'
           }`}
           bordered
-          style={{ width: '9rem', height: '8rem', borderRadius: '50%' }}
         />
         <Divider />
         <Grid>

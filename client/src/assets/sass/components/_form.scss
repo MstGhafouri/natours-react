@@ -17,6 +17,9 @@
         margin-bottom: 3rem;
         text-align: center;
       }
+      @include respond(600) {
+        font-size: 2.3rem;
+      }
     }
   }
 
