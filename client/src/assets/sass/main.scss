@@ -1,14 +1,19 @@
-@import './variables';
-@import './mixins';
-@import './base';
-@import './loader';
-@import './buttons';
-@import './typography';
-@import './header';
-@import './tours';
-@import './tour';
-@import './footer';
-@import './form';
-@import './userPanel';
-@import './notFound';
+@import './abstract/variables';
+@import './abstract/mixins';
+
+@import './base/base';
+@import './base/typography';
+
+@import './components/loader';
+@import './components/buttons';
+@import './components/form';
+
+@import './layout/header';
+@import './layout/footer';
+
+@import './pages/home';
+@import './pages/tour';
+@import './pages/userPanel';
+@import './pages/notFound';
+
 @import 'react-redux-toastr/src/styles/index';
