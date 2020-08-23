@@ -51,13 +51,15 @@ exports.resizeUserPhoto = catchAsync(async (req, res, next) => {
   next();
 });
 
-exports.filterObj = (obj, ...allowedFields) => {
+const filterObj = (obj, ...allowedFields) => {
   const filteredObj = {};
   Object.keys(obj).forEach(key => {
     if (allowedFields.includes(key)) filteredObj[key] = obj[key];
   });
   return filteredObj;
 };
+
+exports.filterObj = filterObj;
 
 exports.getMe = (req, res, next) => {
   req.params.id = req.user.id;
