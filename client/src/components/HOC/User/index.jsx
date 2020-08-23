@@ -1,11 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Grid, Responsive, Checkbox } from 'semantic-ui-react';
 
 import SidebarList from './SidebarList';
+import useWindowWidth from './useWindowWidth';
 
 const UserLayout = ({ children }) => {
   const [check, setCheck] = useState(false);
-  const style = {};
+  const { width } = useWindowWidth();
+
+  useEffect(() => {
+    if (width > 902) setCheck(true);
+  }, [width]);
 
   const onToggleCheck = () => {
     setCheck(!check);
