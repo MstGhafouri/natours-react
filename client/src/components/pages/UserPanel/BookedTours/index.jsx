@@ -42,7 +42,7 @@ const UserBookedTours = ({ bookings, fetchUserTours, isLoading }) => {
         <ContentBox headingText="Your tours">
           {isLoading ? (
             <Spinner />
-          ) : bookings.length ? (
+          ) : bookings && bookings.length ? (
             <UserTours userTours={bookings} />
           ) : (
             <EmptyMessage />
