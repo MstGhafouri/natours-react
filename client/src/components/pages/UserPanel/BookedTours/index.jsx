@@ -34,7 +34,7 @@ const UserBookedTours = ({ bookings, fetchUserTours, isLoading }) => {
       );
     }
     fetchUserTours();
-  }, [fetchUserTours]);
+  }, [fetchUserTours, location.search]);
 
   return (
     <UserLayout>
