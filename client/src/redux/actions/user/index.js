@@ -1,26 +1,24 @@
 import { toastr } from 'react-redux-toastr';
-import natoursApi from '../../../api/natoursApi';
-import history from '../../../history';
+
 import { persistor } from '../../store';
-import * as type from '../types';
+import natoursApi from '../../../api/natoursApi';
+import errorHandler from '../errorHandler';
+import history from '../../../history';
+import * as types from '../types';
 
 export const signup = data => {
   return async dispatch => {
     try {
-      dispatch({ type: type.signUpUserRequest });
+      dispatch({ type: types.signUpUserRequest });
       const response = await natoursApi.post('/users/signup', data);
       dispatch({
-        type: type.signUpUserSuccess,
+        type: types.signUpUserSuccess,
         payload: response.data.data.user
       });
       toastr.success('Success', 'Your registration was successful');
       history.push('/me/settings');
     } catch (error) {
-      dispatch({
-        type: type.signUpUserFailure,
-        payload: error.response.data.message
-      });
-      toastr.error('Error', error.response.data.message);
+      errorHandler(error, dispatch, types.signUpUserFailure);
     }
   };
 };
@@ -28,20 +26,16 @@ export const signup = data => {
 export const login = data => {
   return async dispatch => {
     try {
-      dispatch({ type: type.loginUserRequest });
+      dispatch({ type: types.loginUserRequest });
       const response = await natoursApi.post('/users/login', data);
       dispatch({
-        type: type.loginUserSuccess,
+        type: types.loginUserSuccess,
         payload: response.data.data.user
       });
       toastr.success('Success', 'Logged in successfully');
       history.push('/me/settings');
     } catch (error) {
-      dispatch({
-        type: type.loginUserFailure,
-        payload: error.response.data.message
-      });
-      toastr.error('Error', error.response.data.message);
+      errorHandler(error, dispatch, types.loginUserFailure);
     }
   };
 };
@@ -49,19 +43,15 @@ export const login = data => {
 export const logout = () => {
   return async dispatch => {
     try {
-      dispatch({ type: type.logoutUserRequest });
+      dispatch({ type: types.logoutUserRequest });
       await natoursApi.get('/users/logout');
       dispatch({
-        type: type.logoutUserSuccess
+        type: types.logoutUserSuccess
       });
       persistor.purge();
       history.push('/');
     } catch (error) {
-      dispatch({
-        type: type.logoutUserFailure,
-        payload: error.response.data.message
-      });
-      toastr.error('Error', error.response.data.message);
+      errorHandler(error, dispatch, types.logoutUserFailure);
     }
   };
 };
@@ -69,21 +59,17 @@ export const logout = () => {
 export const resetUserPassword = data => {
   return async dispatch => {
     try {
-      dispatch({ type: type.resetPasswordRequest });
+      dispatch({ type: types.resetPasswordRequest });
       await natoursApi.post('/users/forgotPassword', data);
       dispatch({
-        type: type.resetPasswordSuccess
+        type: types.resetPasswordSuccess
       });
       toastr.info(
         'Email sent!',
         'Check your email for a link to reset your password'
       );
     } catch (error) {
-      dispatch({
-        type: type.resetPasswordFailure,
-        payload: error.response.data.message
-      });
-      toastr.error('Error', error.response.data.message);
+      errorHandler(error, dispatch, types.resetPasswordFailure);
     }
   };
 };
@@ -91,22 +77,18 @@ export const resetUserPassword = data => {
 export const changeUserPassword = (data, token) => {
   return async dispatch => {
     try {
-      dispatch({ type: type.changePasswordRequest });
+      dispatch({ type: types.changePasswordRequest });
       const response = await natoursApi.patch(
         `/users/resetPassword/${token}`,
         data
       );
       dispatch({
-        type: type.changePasswordSuccess,
+        type: types.changePasswordSuccess,
         payload: response.data.data.user
       });
       toastr.success('Success', 'Your password has been changed successfully');
     } catch (error) {
-      dispatch({
-        type: type.changePasswordFailure,
-        payload: error.response.data.message
-      });
-      toastr.error('Error', error.response.data.message);
+      errorHandler(error, dispatch, types.changePasswordFailure);
     }
   };
 };
@@ -117,23 +99,19 @@ export const uploadUserPhoto = file => {
       const formData = new FormData();
       formData.append('photo', file);
 
-      dispatch({ type: type.uploadPhotoRequest });
+      dispatch({ type: types.uploadPhotoRequest });
       const response = await natoursApi.patch('/users/updateMe', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
       });
       dispatch({
-        type: type.uploadPhotoSuccess,
+        type: types.uploadPhotoSuccess,
         payload: response.data.data.user
       });
       toastr.success('Success', 'Your photo has been updated successfully');
     } catch (error) {
-      dispatch({
-        type: type.uploadPhotoFailure,
-        payload: error.response.data.message
-      });
-      toastr.error('Error', error.response.data.message);
+      errorHandler(error, dispatch, types.uploadPhotoFailure);
     }
   };
 };
@@ -141,19 +119,15 @@ export const uploadUserPhoto = file => {
 export const updateUserData = data => {
   return async dispatch => {
     try {
-      dispatch({ type: type.updateUserDataRequest });
+      dispatch({ type: types.updateUserDataRequest });
       const response = await natoursApi.patch('/users/updateMe', data);
       dispatch({
-        type: type.updateUserDataSuccess,
+        type: types.updateUserDataSuccess,
         payload: response.data.data.user
       });
       toastr.success('Success', 'Your profile has been updated successfully');
     } catch (error) {
-      dispatch({
-        type: type.updateUserDataFailure,
-        payload: error.response.data.message
-      });
-      toastr.error('Error', error.response.data.message);
+      errorHandler(error, dispatch, types.updateUserDataFailure);
     }
   };
 };
@@ -161,19 +135,15 @@ export const updateUserData = data => {
 export const updateUserPassword = data => {
   return async dispatch => {
     try {
-      dispatch({ type: type.updateUserPasswordRequest });
+      dispatch({ type: types.updateUserPasswordRequest });
       const response = await natoursApi.patch('/users/updatePassword', data);
       dispatch({
-        type: type.updateUserPasswordSuccess,
+        type: types.updateUserPasswordSuccess,
         payload: response.data.data.user
       });
       toastr.success('Success', 'Your password has been updated successfully');
     } catch (error) {
-      dispatch({
-        type: type.updateUserPasswordFailure,
-        payload: error.response.data.message
-      });
-      toastr.error('Error', error.response.data.message);
+      errorHandler(error, dispatch, types.updateUserPasswordFailure);
     }
   };
 };
@@ -181,18 +151,14 @@ export const updateUserPassword = data => {
 export const deleteUser = id => {
   return async dispatch => {
     try {
-      dispatch({ type: type.deleteUserRequest });
+      dispatch({ type: types.deleteUserRequest });
       await natoursApi.delete(`/users/${id}`);
       dispatch({
-        type: type.deleteUserSuccess
+        type: types.deleteUserSuccess
       });
       toastr.success('Success', 'User deleted successfully');
     } catch (error) {
-      dispatch({
-        type: type.deleteUserFailure,
-        payload: error.response.data.message
-      });
-      toastr.error('Error', error.response.data.message);
+      errorHandler(error, dispatch, types.deleteUserFailure);
     }
   };
 };
@@ -200,18 +166,14 @@ export const deleteUser = id => {
 export const addUser = data => {
   return async dispatch => {
     try {
-      dispatch({ type: type.addUserRequest });
+      dispatch({ type: types.addUserRequest });
       await natoursApi.post('/users/', data);
       dispatch({
-        type: type.addUserSuccess
+        type: types.addUserSuccess
       });
       toastr.success('Success', 'User has been created successfully');
     } catch (error) {
-      dispatch({
-        type: type.addUserFailure,
-        payload: error.response.data.message
-      });
-      toastr.error('Error', error.response.data.message);
+      errorHandler(error, dispatch, types.addUserFailure);
     }
   };
 };
@@ -219,19 +181,14 @@ export const addUser = data => {
 export const fetchUserTours = () => {
   return async dispatch => {
     try {
-      dispatch({ type: type.fetchUserToursRequest });
+      dispatch({ type: types.fetchUserToursRequest });
       const response = await natoursApi.get('/users/my-tours');
       dispatch({
-        type: type.fetchUserToursSuccess,
+        type: types.fetchUserToursSuccess,
         payload: response.data.data.tours
       });
-      
     } catch (error) {
-      dispatch({
-        type: type.fetchUserToursFailure,
-        payload: error.response.data.message
-      });
-      toastr.error('Error', error.response.data.message);
+      errorHandler(error, dispatch, types.fetchUserToursFailure);
     }
   };
 };

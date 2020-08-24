@@ -11,7 +11,7 @@ export const errorReducer = (state = {}, action) => {
       requestState === 'FAILURE'
         ? {
             message: payload.message,
-            statusCode: payload.response && payload.response.status
+            statusCode: payload.status
           }
         : {}
   };

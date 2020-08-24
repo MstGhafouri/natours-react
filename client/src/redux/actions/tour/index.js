@@ -1,16 +1,6 @@
-import { toastr } from 'react-redux-toastr';
-import history from '../../../history';
 import natoursApi from '../../../api/natoursApi';
-import {
-  getToursRequest,
-  getToursSuccess,
-  getToursFailure,
-  getTourRequest,
-  getTourSuccess,
-  getTourFailure,
-  getTotalDocs,
-  setQueryParams
-} from '../types';
+import errorHandler from '../errorHandler';
+import * as types from '../types';
 
 export const INITIAL_QUERY = {
   searchTerm: null,
@@ -27,13 +17,16 @@ export const fetchTours = (queryObj = INITIAL_QUERY) => {
       sortBy = sortBy || getState().queryParams.sortBy;
       const queryStr = `page=${page}&sort=${sortBy}`;
       // Dispatch actions
-      dispatch({ type: setQueryParams, payload: { page, sortBy } });
-      dispatch({ type: getToursRequest });
+      dispatch({ type: types.setQueryParams, payload: { page, sortBy } });
+      dispatch({ type: types.getToursRequest });
       const response = await natoursApi.get(`/tours?${queryStr}`);
-      dispatch({ type: getToursSuccess, payload: response.data.data.tours });
-      dispatch({ type: getTotalDocs, payload: response.data.totalDocs });
+      dispatch({
+        type: types.getToursSuccess,
+        payload: response.data.data.tours
+      });
+      dispatch({ type: types.getTotalDocs, payload: response.data.totalDocs });
     } catch (error) {
-      dispatch({ type: getToursFailure, payload: error });
+      errorHandler(error, dispatch, types.getToursFailure);
     }
   };
 };
@@ -41,13 +34,14 @@ export const fetchTours = (queryObj = INITIAL_QUERY) => {
 export const fetchTour = slug => {
   return async dispatch => {
     try {
-      dispatch({ type: getTourRequest });
+      dispatch({ type: types.getTourRequest });
       const response = await natoursApi.get(`/tours/slug/${slug}`);
-      dispatch({ type: getTourSuccess, payload: response.data.data.tour });
+      dispatch({
+        type: types.getTourSuccess,
+        payload: response.data.data.tour
+      });
     } catch (error) {
-      dispatch({ type: getTourFailure, payload: error.response.data.message });
-      toastr.error('Error', error.response.data.message);
-      if (error.response.data.error.statusCode === 404) history.push('/404');
+      errorHandler(error, dispatch, types.getTourFailure);
     }
   };
 };
