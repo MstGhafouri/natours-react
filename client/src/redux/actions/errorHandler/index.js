@@ -14,13 +14,12 @@ export default (error, dispatch, type) => {
 
     switch (status) {
       case 404:
-        history.push('/404');
+        if (type !== types.resetPasswordFailure) history.push('/404');
         break;
       case 401:
         dispatch({
           type: types.logoutUserSuccess
         });
-        toastr.info('Info', 'Please log in again');
         history.push('/login');
         break;
       default:
