@@ -8,7 +8,8 @@ const CustomBtn = ({
   children,
   rgb,
   isLink = true,
-  type = 'submit'
+  type = 'submit',
+  onClick
 }) =>
   isLink ? (
     <Link
@@ -23,6 +24,7 @@ const CustomBtn = ({
       type={type}
       className={classes}
       style={{ backgroundColor: `rgb(${rgb})` }}
+      onClick={onClick}
     >
       {children}
     </button>

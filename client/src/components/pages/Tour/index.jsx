@@ -54,6 +54,7 @@ const Tour = ({ fetchTour, selectedTour, isLoading }) => {
         duration={selectedTour.duration}
         images={selectedTour.images}
         season={selectedTour.season}
+        tourId={selectedTour.id}
       />
     </React.Fragment>
   );

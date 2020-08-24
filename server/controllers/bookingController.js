@@ -16,7 +16,7 @@ exports.getCheckoutSession = catchAsync(async (req, res, next) => {
     // success_url: `${req.protocol}://${req.get('host')}/my-tours/?tour=${
     //   req.params.tourId
     // }&user=${req.user.id}&price=${tour.price}`,
-    success_url: `${req.protocol}://${req.get('host')}/my-tours?alert=booking`,
+    success_url: `${req.protocol}://${req.get('host')}/me/tours?alert=booking`,
     cancel_url: `${req.protocol}://${req.get('host')}/tour/${tour.slug}`,
     customer_email: req.user.email,
     client_reference_id: req.params.tourId,
@@ -67,6 +67,21 @@ exports.webhookCheckout = (req, res, next) => {
 
   res.status(200).json({ received: true });
 };
+
+exports.getMyTours = catchAsync(async (req, res, next) => {
+  // Find all bookings
+  const bookings = await Booking.find({ user: req.user.id });
+  // Find tours with returned bookings IDs
+  const toursID = bookings.map(booking => booking.tour);
+  const tours = await Tour.find({ _id: { $in: toursID } });
+
+  res.status(200).json({
+    status: 'success',
+    data: {
+      tours
+    }
+  });
+});
 
 exports.createBooking = factory.createOne(Booking);
 exports.getBooking = factory.getOne(Booking);

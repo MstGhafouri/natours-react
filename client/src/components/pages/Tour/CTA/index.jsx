@@ -1,10 +1,25 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import { loadingSelector as createLoadingSelector } from '../../../../redux/reducers/loading';
+import { bookTour } from '../../../../redux/actions/stripe';
 import { colorConfig } from '../../../utils';
+import ButtonLoader from '../../../utils/ButtonLoader';
 import CustomBtn from '../../../utils/CustomBtn';
 
-const TourCTA = ({ duration, images, season, currentUser }) => {
+const TourCTA = ({
+  duration,
+  images,
+  season,
+  currentUser,
+  tourId,
+  bookTour,
+  isLoading
+}) => {
+  const onBookTourClicked = tourId => {
+    bookTour(tourId);
+  };
+
   return (
     <section className="section-cta">
       <div className="cta">
@@ -44,11 +59,21 @@ const TourCTA = ({ duration, images, season, currentUser }) => {
           </p>
           <CustomBtn
             classes="custom-btn span-all-rows"
+            type="button"
             rgb={colorConfig[season][1]}
             isLink={!!!currentUser}
             linkTo="/login"
+            onClick={() => onBookTourClicked(tourId)}
           >
-            {currentUser ? 'Book tour now' : 'Log in to book'}
+            {currentUser ? (
+              <ButtonLoader
+                isLoading={isLoading}
+                text="Book tour now"
+                loadingText="Processing"
+              />
+            ) : (
+              'Log in to book'
+            )}
           </CustomBtn>
         </div>
       </div>
@@ -56,6 +81,11 @@ const TourCTA = ({ duration, images, season, currentUser }) => {
   );
 };
 
-const mapStateToProps = ({ user: { currentUser } }) => ({ currentUser });
+const loadingSelector = createLoadingSelector(['BOOK_TOUR']);
 
-export default connect(mapStateToProps)(TourCTA);
+const mapStateToProps = state => ({
+  currentUser: state.user.currentUser,
+  isLoading: loadingSelector(state)
+});
+
+export default connect(mapStateToProps, { bookTour })(TourCTA);

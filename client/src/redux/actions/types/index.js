@@ -49,3 +49,11 @@ export const deleteUserFailure = "DELETE_USER_FAILURE";
 export const addUserRequest = "ADD_USER_REQUEST";
 export const addUserSuccess = "ADD_USER_SUCCESS";
 export const addUserFailure = "ADD_USER_FAILURE";
+
+export const fetchUserToursRequest = "FETCH_USER_TOURS_REQUEST";
+export const fetchUserToursSuccess = "FETCH_USER_TOURS_SUCCESS";
+export const fetchUserToursFailure = "FETCH_USER_TOURS_FAILURE";
+
+export const bookTourRequest = "BOOK_TOUR_REQUEST";
+export const bookTourSuccess = "BOOK_TOUR_SUCCESS";
+export const bookTourFailure = "BOOK_TOUR_FAILURE";

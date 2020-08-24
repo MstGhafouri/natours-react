@@ -9,6 +9,7 @@ const UserLayout = ({ children }) => {
   const { width } = useWindowWidth();
 
   useEffect(() => {
+    document.title = 'Natours | User panel'
     if (width > 902) setCheck(true);
   }, [width]);
 

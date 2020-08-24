@@ -20,14 +20,14 @@ const userLinks = [
     isActive: false
   },
   {
-    text: 'My Bookmarks',
-    icon: 'briefcase',
-    linkTo: '/me/bookmarks',
+    text: 'My Tours',
+    icon: 'gem outline',
+    linkTo: '/me/tours',
     isActive: false
   },
   {
     text: 'My Reviews',
-    icon: 'star outline',
+    icon: 'comment alternate outline',
     linkTo: '/me/reviews',
     isActive: false
   },

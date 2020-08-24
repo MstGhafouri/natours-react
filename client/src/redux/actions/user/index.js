@@ -215,3 +215,23 @@ export const addUser = data => {
     }
   };
 };
+
+export const fetchUserTours = () => {
+  return async dispatch => {
+    try {
+      dispatch({ type: type.fetchUserToursRequest });
+      const response = await natoursApi.get('/users/my-tours');
+      dispatch({
+        type: type.fetchUserToursSuccess,
+        payload: response.data.data.tours
+      });
+      
+    } catch (error) {
+      dispatch({
+        type: type.fetchUserToursFailure,
+        payload: error.response.data.message
+      });
+      toastr.error('Error', error.response.data.message);
+    }
+  };
+};

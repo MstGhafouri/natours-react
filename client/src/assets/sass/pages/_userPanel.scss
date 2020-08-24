@@ -223,3 +223,22 @@
     font-weight: 300;
   }
 }
+
+.user-tours {
+  padding: 3rem 2rem;
+
+  & > .ui.container {
+    & > .ui.header:first-child {
+      @extend %customHeading;
+
+      &.large {
+        margin-bottom: 4rem;
+        text-align: center;
+      }
+    }
+
+    .ui.message {
+      text-align: center;
+    }
+  }
+}

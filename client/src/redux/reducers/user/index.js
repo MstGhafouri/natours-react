@@ -1,27 +1,22 @@
-import {
-  loginUserSuccess,
-  signUpUserSuccess,
-  logoutUserSuccess,
-  changePasswordSuccess,
-  uploadPhotoSuccess,
-  updateUserDataSuccess,
-  updateUserPasswordSuccess
-} from '../../actions/types';
+import * as types from '../../actions/types';
 
 const INITIAL_STATE = {
-  currentUser: null
+  currentUser: null,
+  bookings: []
 };
 
 export const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case loginUserSuccess:
-    case signUpUserSuccess:
-    case changePasswordSuccess:
-    case uploadPhotoSuccess:    
-    case updateUserDataSuccess:
-    case updateUserPasswordSuccess:    
+    case types.loginUserSuccess:
+    case types.signUpUserSuccess:
+    case types.changePasswordSuccess:
+    case types.uploadPhotoSuccess:
+    case types.updateUserDataSuccess:
+    case types.updateUserPasswordSuccess:
       return { ...state, currentUser: action.payload };
-    case logoutUserSuccess:
+    case types.fetchUserToursSuccess:
+      return { ...state, bookings: action.payload };
+    case types.logoutUserSuccess:
       return { ...state, currentUser: null };
     default:
       return state;

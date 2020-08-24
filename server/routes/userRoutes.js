@@ -1,5 +1,6 @@
 const express = require('express');
 const userController = require('../controllers/userController');
+const bookingController = require('../controllers/bookingController');
 const authController = require('../controllers/authController');
 
 const router = express.Router();
@@ -22,6 +23,7 @@ router.patch(
 );
 router.delete('/deleteMe', userController.deleteMe);
 router.get('/me', userController.getMe, userController.getUser);
+router.get('/my-tours', bookingController.getMyTours);
 
 // Restrict All Upcoming Routes Only To admin
 router.use(authController.restrictTo('admin'));
