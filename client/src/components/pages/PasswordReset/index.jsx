@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { reduxForm, Field, reset } from 'redux-form';
-import { Form, Header, Label, Loader } from 'semantic-ui-react';
+import { Form, Header, Label } from 'semantic-ui-react';
 
 import {
   resetUserPassword,
@@ -11,6 +11,7 @@ import {
 import { loadingSelector as createLoadingSelector } from '../../../redux/reducers/loading';
 import CustomBtn from '../../utils/CustomBtn';
 import ContentBox from '../../utils/ContentBox';
+import ButtonLoader from '../../utils/ButtonLoader';
 import Validator from '../../../validator';
 
 class PasswordReset extends React.Component {
@@ -51,13 +52,11 @@ class PasswordReset extends React.Component {
               validate={[Validator.required, Validator.passwordsMatch]}
             />
             <CustomBtn classes="custom-btn" rgb="40, 180, 133" isLink={false}>
-              <Loader
-                inline
-                inverted
-                className={`${isLoading ? 'active' : ''}`}
-                style={{ marginRight: '3px' }}
+              <ButtonLoader
+                isLoading={isLoading}
+                text="Change password"
+                loadingText="Processing"
               />
-              {isLoading ? 'Processing' : 'Change password'}
             </CustomBtn>
           </Form>
         </ContentBox>
@@ -79,13 +78,11 @@ class PasswordReset extends React.Component {
             validate={[Validator.required, Validator.email]}
           />
           <CustomBtn classes="custom-btn" rgb="40, 180, 133" isLink={false}>
-            <Loader
-              inline
-              inverted
-              className={`${isLoading ? 'active' : ''}`}
-              style={{ marginRight: '3px' }}
+            <ButtonLoader
+              isLoading={isLoading}
+              text="Send password reset email"
+              loadingText="Sending"
             />
-            {isLoading ? 'Sending' : 'Send password reset email'}
           </CustomBtn>
         </Form>
       </ContentBox>

@@ -1,12 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field, reset } from 'redux-form';
-import { Form, Divider, Label, Loader } from 'semantic-ui-react';
+import { Form, Divider, Label } from 'semantic-ui-react';
 
 import { login } from '../../../redux/actions/user';
 import { loadingSelector as createLoadingSelector } from '../../../redux/reducers/loading';
 import CustomBtn from '../../utils/CustomBtn';
 import ContentBox from '../../utils/ContentBox';
+import ButtonLoader from '../../utils/ButtonLoader';
 import Validator from '../../../validator';
 
 class Login extends React.Component {
@@ -68,13 +69,11 @@ class Login extends React.Component {
               validate={[Validator.required, Validator.minLength7]}
             />
             <CustomBtn classes="custom-btn" rgb="40, 180, 133" isLink={false}>
-              <Loader
-                inline
-                inverted
-                className={`${isLoading ? 'active' : ''}`}
-                style={{ marginRight: '3px' }}
+              <ButtonLoader
+                isLoading={isLoading}
+                text="Login"
+                loadingText="Processing"
               />
-              {isLoading ? 'Processing' : 'Login'}
             </CustomBtn>
             <Divider section />
             <CustomBtn
