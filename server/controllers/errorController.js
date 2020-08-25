@@ -25,54 +25,28 @@ const handleJWTExpiredError = () =>
   new AppError('Token is expired. Please log in again!', 401);
 
 const sendErrorDev = (err, req, res) => {
-  // API Exceptions
-  if (req.originalUrl.startsWith('/api')) {
-    return res.status(err.statusCode).json({
-      status: err.status,
-      message: err.message,
-      error: err,
-      stack: err.stack
-    });
-  }
-  // ******** RENDERING Exceptions *************
-  res.status(err.statusCode).render('error', {
-    title: 'Something went wrong',
-    message: err.message
+  res.status(err.statusCode).json({
+    status: err.status,
+    message: err.message,
+    error: err,
+    stack: err.stack
   });
 };
 
 const sendErrorProd = (err, req, res) => {
-  // API Exceptions
-  if (req.originalUrl.startsWith('/api')) {
-    // Trusted Exceptions, ( Known !)
-    if (err.isOperational) {
-      return res.status(err.statusCode).json({
-        status: err.status,
-        message: err.message
-      });
-    }
-    // Unknown Exceptions, don't leak error details to client
-    // eslint-disable-next-line no-console
-    console.error('Error 🧨🧨🧨 ', err);
-    return res.status(500).json({
-      status: 'error',
-      message: 'Something went wrong :('
-    });
-  }
-  // ******** RENDERING Exceptions *************
   // Trusted Exceptions, ( Known !)
   if (err.isOperational) {
-    return res.status(err.statusCode).render('error', {
-      title: 'Something went wrong',
+    return res.status(err.statusCode).json({
+      status: err.status,
       message: err.message
     });
   }
   // Unknown Exceptions, don't leak error details to client
   // eslint-disable-next-line no-console
   console.error('Error 🧨🧨🧨 ', err);
-  return res.status(err.statusCode).render('error', {
-    title: 'Something went wrong',
-    message: 'Please try again later'
+  res.status(500).json({
+    status: 'error',
+    message: 'Something went wrong :('
   });
 };
 
