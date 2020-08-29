@@ -6,7 +6,7 @@ Where life begins!
 
 ### A MERN Stack web-app
 
-**This project is build using modern technologies**:
+**This project is built using modern technologies**:
 
 - `React & Redux`
 - `Node & Express`
@@ -18,10 +18,11 @@ Where life begins!
 I've built this app based on [Jonas Schmedtmann](https://github.com/jonasschmedtmann) node bootcamp course (one of the best udemy courses!).
 
 **This project consists of a lot of modern and advanced features like**:
+
 - [x] User authentication & authorization (`jsonWebToken`, `password reset`, ...)
 - [x] Stripe `payment`
 - [x] Sending `emails` with Sendgrid
-- [x] Advanced `seaching`, `filtering` and `pagination`
+- [x] Advanced `searching`, `filtering` and `pagination`
 - [x] `Drag & drop`, `cropping` and `uploading` images
 - [x] `Admin CRUD operations` for managing users
 - [x] Integrating `Mapbox` in react
