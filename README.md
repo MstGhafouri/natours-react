@@ -24,8 +24,9 @@ I've built this app based on [Jonas Schmedtmann](https://github.com/jonasschmedt
 - [x] Advanced `seaching`, `filtering` and `pagination`
 - [x] `Drag & drop`, `cropping` and `uploading` images
 - [x] `Admin CRUD operations` for managing users
+- [x] Integrating `Mapbox` in react
 - [ ] Advanced authentication (`confirm user email`, `refresh tokens`, ...) soon!
 - [ ] And more...!
 
-I'm continuously improving this project; 
-There are a lot more features to add, and it can be improved much more.
+I'm constantly improving this project; 
+There are a lot more features to add, and there is always a room for improvement.
