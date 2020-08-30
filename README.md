@@ -26,7 +26,7 @@ I've built this app based on [Jonas Schmedtmann](https://github.com/jonasschmedt
 - [x] `Drag & drop`, `cropping` and `uploading` images
 - [x] `Admin CRUD operations` for managing users
 - [x] Integrating `Mapbox` in react
-- [ ] Advanced authentication (`confirm user email`, `refresh tokens`, ...) soon!
+- [ ] Advanced authentication (`confirm user email`, `refresh tokens`, ...)
 - [ ] And more...!
 
 I'm constantly improving this project; 
