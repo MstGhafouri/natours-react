@@ -11,6 +11,7 @@ const compression = require('compression');
 const cors = require('cors');
 
 const globalErrorHandler = require('./controllers/errorController');
+const AppError = require('./utils/appError');
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
@@ -100,6 +101,10 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
+// Catch all unknown routes
+app.all('*', (req, res, next) => {
+  next(new AppError(`Can't find ${req.method} ${req.originalUrl} on this server`, 404));
+});
 // Final middleware, Global Error Handler
 app.use(globalErrorHandler);
 
