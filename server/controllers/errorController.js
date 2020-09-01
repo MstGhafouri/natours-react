@@ -3,7 +3,7 @@ const AppError = require('../utils/appError');
 // MongoDB duplicate fields error handler
 // We marked mongodb errors as known errors
 const handleDuplicateErrorDB = err => {
-  const value = err.errmsg.match(/(["'])(\\?.)*?\1/)[0];
+  const value = Object.values(err.keyValue)[0];
   const message = `Duplicate field value: ${value}. Please use another value!`;
   return new AppError(message, 400);
 };
