@@ -49,13 +49,30 @@ exports.signup = catchAsync(async (req, res, next) => {
   // Generate email confirm token
   const token = newUser.createConfirmEmailToken();
   await newUser.save({ validateBeforeSave: false });
-  // Send confirmation email
-  const url = `${req.protocol}://${req.get(
-    'host'
-  )}/api/v1/users/confirmEmail?token=${token}`;
-  await new Email(newUser, url).sendEmailConfirm();
 
-  createAndSendToken(newUser, 201, req, res);
+  try {
+    // Send confirmation email
+    const url = `${req.protocol}://${req.get(
+      'host'
+    )}/signup?token=${token}`;
+    await new Email(newUser, url).sendEmailConfirm();
+
+    res.status(201).json({
+      status: 'success',
+      message:
+        `We sent an email with a link to verify and confirm your account. 
+        If you can't find the email in your inbox, please check your spam folder.`
+    });
+  } catch (error) {
+    // If an error occurred, delete new user and ask him to try again
+    await User.findByIdAndDelete(newUser._id);
+    return next(
+      new AppError(
+        'An error occurred while sending verification email! please try again later.',
+        500
+      )
+    );
+  }
 });
 
 exports.login = catchAsync(async (req, res, next) => {
