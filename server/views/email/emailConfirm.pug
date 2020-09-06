@@ -1,0 +1,17 @@
+extends baseEmail
+
+block content
+  p Hi #{firstName},
+  p In order to complete your registration, Please make a GET request to: 🙏
+  p #{url}
+  table.btn.btn-primary(role='presentation', border='0', cellpadding='0', cellspacing='0')
+    tbody
+      tr
+        td(align='left')
+          table(role='presentation', border='0', cellpadding='0', cellspacing='0')
+            tbody
+              tr
+                td
+                  a(href=`${url}`, target='_blank') Confirm your email
+  p If you need any help, please don't hesitate to contact me!
+  p - Mostafa Ghafouri, CEO
