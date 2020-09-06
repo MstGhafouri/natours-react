@@ -20,13 +20,13 @@ I've built this app based on [Jonas Schmedtmann](https://github.com/jonasschmedt
 **This project consists of a lot of modern and advanced features like**:
 
 - [x] User authentication & authorization (`jsonWebToken`, `password reset`, ...)
+- [x] Advanced authentication (`confirm user email`)
 - [x] Stripe `payment`
 - [x] Sending `emails` with Sendgrid
 - [x] Advanced `searching`, `filtering` and `pagination`
 - [x] `Drag & drop`, `cropping` and `uploading` images
 - [x] `Admin CRUD operations` for managing users
 - [x] Integrating `Mapbox` in react
-- [ ] Advanced authentication (`confirm user email`, `refresh tokens`, ...)
 - [ ] And more...!
 
 I'm constantly improving this project; 
