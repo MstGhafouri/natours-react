@@ -26,6 +26,7 @@ const createAndSendToken = (user, statusCode, req, res) => {
   user.password = undefined;
   user.__v = undefined;
   user.active = undefined;
+  user.confirmEmailToken = undefined;
 
   res.status(statusCode).json({
     status: 'success',
@@ -44,11 +45,15 @@ exports.signup = catchAsync(async (req, res, next) => {
     'password',
     'passwordConfirm'
   );
-
   const newUser = await User.create(filteredBody);
-
-  const url = `${req.protocol}://${req.get('host')}/me`;
-  await new Email(newUser, url).sendWelcome();
+  // Generate email confirm token
+  const token = newUser.createConfirmEmailToken();
+  await newUser.save({ validateBeforeSave: false });
+  // Send confirmation email
+  const url = `${req.protocol}://${req.get(
+    'host'
+  )}/api/v1/users/confirmEmail?token=${token}`;
+  await new Email(newUser, url).sendEmailConfirm();
 
   createAndSendToken(newUser, 201, req, res);
 });
@@ -132,7 +137,11 @@ exports.protect = catchAsync(async (req, res, next) => {
       new AppError('User belonging to this token does no longer exist', 401)
     );
   }
-  // 4) Check if user changed password after the token was issued
+  // 4) Check if user has confirmed his/her email address
+  if (!user.isEmailConfirmed) {
+    return next(new AppError('Your email address is not confirmed yet', 401));
+  }
+  // 5) Check if user changed password after the token was issued
   if (user.checkUserChangedPasswordAfter(decoded.iat)) {
     return next(
       new AppError(
@@ -230,5 +239,29 @@ exports.updatePassword = catchAsync(async (req, res, next) => {
   user.passwordConfirm = passwordConfirm;
   await user.save();
   // 4) Log the user in
+  createAndSendToken(user, 200, req, res);
+});
+
+// Confirm user email address
+exports.confirmEmail = catchAsync(async (req, res, next) => {
+  // 1) Get token from the query
+  const { token } = req.query;
+  if (!token) return next(new AppError('Token is required', 400));
+  // 2) Generate hashed token from req.token
+  const hashedToken = crypto.createHash('sha256').update(token).digest('hex');
+  // 3) Get user based on provided token
+  const user = await User.findOne({
+    confirmEmailToken: hashedToken,
+    isEmailConfirmed: false
+  });
+  if (!user) return next(new AppError('Token is invalid', 400));
+  // 4) Update user and save it to DB
+  user.isEmailConfirmed = true;
+  user.confirmEmailToken = undefined;
+  await user.save({ validateBeforeSave: false });
+  // 5) Send welcome email to user
+  const url = `${req.protocol}://${req.get('host')}/me`;
+  await new Email(user, url).sendWelcome();
+  // 6) Log user in and send jwt
   createAndSendToken(user, 200, req, res);
 });

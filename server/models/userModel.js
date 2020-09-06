@@ -55,7 +55,12 @@ const userSchema = new mongoose.Schema({
   },
   passwordChangedAt: Date,
   passwordResetToken: String,
-  passwordResetExpiresAt: Date
+  passwordResetExpiresAt: Date,
+  confirmEmailToken: String,
+  isEmailConfirmed: {
+    type: Boolean,
+    default: false
+  }
 });
 
 // 1) Hash passwords
@@ -111,6 +116,16 @@ userSchema.methods.createPasswordResetToken = function () {
   this.passwordResetExpiresAt = Date.now() + 10 * 60 * 1000; // 10 minutes from now !
 
   return resetToken;
+};
+
+userSchema.methods.createConfirmEmailToken = function () {
+  const confirmToken = crypto.randomBytes(32).toString('hex');
+  this.confirmEmailToken = crypto
+    .createHash('sha256')
+    .update(confirmToken)
+    .digest('hex');
+
+  return confirmToken;
 };
 
 const User = mongoose.model('User', userSchema);
