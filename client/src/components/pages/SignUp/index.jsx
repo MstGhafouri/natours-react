@@ -1,18 +1,26 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field, reset } from 'redux-form';
+import { withRouter } from 'react-router-dom';
 import { Form, Label } from 'semantic-ui-react';
+import queryString from 'query-string';
 
-import { signup } from '../../../redux/actions/user';
+import { signup, confirmUserEmail } from '../../../redux/actions/user';
 import { loadingSelector as createLoadingSelector } from '../../../redux/reducers/loading';
 import CustomBtn from '../../utils/CustomBtn';
 import ContentBox from '../../utils/ContentBox';
 import ButtonLoader from '../../utils/ButtonLoader';
+import Spinner from '../../utils/Spinner';
 import Validator from '../../../validator';
 
 class SignUp extends React.Component {
   componentDidMount() {
     document.title = 'Natours | Sign up';
+    const { location, confirmUserEmail } = this.props;
+    const { token } = queryString.parse(location.search);
+    if (token) {
+      confirmUserEmail(token);
+    }
   }
 
   renderError = ({ error, touched }) => {
@@ -46,9 +54,15 @@ class SignUp extends React.Component {
   };
 
   render() {
-    const { isLoading } = this.props;
+    const {
+      isLoading,
+      location: { search }
+    } = this.props;
+    const { token } = queryString.parse(search);
 
-    return (
+    return isLoading && token ? (
+      <Spinner />
+    ) : (
       <div className="custom-form custom-form-box">
         <ContentBox headingText="Join into natours family">
           <Form size="huge" onSubmit={this.props.handleSubmit(this.onSubmit)}>
@@ -98,10 +112,13 @@ class SignUp extends React.Component {
   }
 }
 
-const loadingSelector = createLoadingSelector(['SIGN_UP_USER']);
+const loadingSelector = createLoadingSelector([
+  'SIGN_UP_USER',
+  'CONFIRM_EMAIL'
+]);
 
 const mapStateToProps = state => ({ isLoading: loadingSelector(state) });
 
-const wrapped = reduxForm({ form: 'signup' })(SignUp);
+const wrapped = reduxForm({ form: 'signup' })(withRouter(SignUp));
 
-export default connect(mapStateToProps, { signup })(wrapped);
+export default connect(mapStateToProps, { signup, confirmUserEmail })(wrapped);

@@ -131,3 +131,18 @@ mark {
 .dropzone:focus {
   outline: none;
 }
+
+.redux-toastr {
+  .toastr.rrt-message {
+    .rrt-title {
+      font-weight: 600;
+      text-transform: uppercase;
+      word-spacing: 3px;
+    }
+    .rrt-text {
+      font-weight: 400;
+      color: $color-dark;
+      border-color: #ddd;
+    }
+  }
+}

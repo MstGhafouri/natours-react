@@ -13,12 +13,31 @@ export const signup = data => {
       const response = await natoursApi.post('/users/signup', data);
       dispatch({
         type: types.signUpUserSuccess,
-        payload: response.data.data.user
+        payload: response.data.message
       });
-      toastr.success('Success', 'Your registration was successful');
-      history.push('/me/settings');
+      toastr.message('Verify your account', response.data.message);
     } catch (error) {
       errorHandler(error, dispatch, types.signUpUserFailure);
+    }
+  };
+};
+
+export const confirmUserEmail = token => {
+  return async dispatch => {
+    try {
+      dispatch({ type: types.confirmEmailRequest });
+      const response = await natoursApi.get(
+        `/users/confirmEmail?token=${token}`
+      );
+      dispatch({
+        type: types.confirmEmailSuccess,
+        payload: response.data.data.user
+      });
+      const { name } = response.data.data.user;
+      toastr.success(`Hi ${name.split(' ')[0]}`, 'Welcome to Natours family');
+      history.push('/me/settings');
+    } catch (error) {
+      errorHandler(error, dispatch, types.confirmEmailFailure);
     }
   };
 };

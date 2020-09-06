@@ -8,7 +8,7 @@ const INITIAL_STATE = {
 export const userReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case types.loginUserSuccess:
-    case types.signUpUserSuccess:
+    case types.confirmEmailSuccess:
     case types.changePasswordSuccess:
     case types.uploadPhotoSuccess:
     case types.updateUserDataSuccess:
