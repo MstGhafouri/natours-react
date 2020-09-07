@@ -4,7 +4,7 @@ Where life begins!
 
 ![natours-react](client/public/img/my-natours-app.png?raw=true "Natours React")
 
-### A MERN Stack web-app
+### A MERN Stack web-app 😎
 
 **This project is built using modern technologies**:
 
@@ -31,3 +31,5 @@ I've built this app based on [Jonas Schmedtmann](https://github.com/jonasschmedt
 
 I'm constantly improving this project; 
 There are a lot more features to add, and there is always a room for improvement.
+
+If you enjoyed this app, don't forget to give a ⭐.
