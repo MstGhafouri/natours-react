@@ -8,9 +8,10 @@ Where life begins!
 
 **This project is built using modern technologies**:
 
-- `React & Redux`
 - `Node & Express`
 - `MongoDB & Mongoose`
+- `Docker & docker-compose`
+- `React & Redux`
 - `Semantic ui react`
 - `Sass`
 - And more!
@@ -28,8 +29,5 @@ I've built this app based on [Jonas Schmedtmann](https://github.com/jonasschmedt
 - [x] `Admin CRUD operations` for managing users
 - [x] Integrating `Mapbox` in react
 - [ ] And more...!
-
-I'm constantly improving this project; 
-There are a lot more features to add, and there is always a room for improvement.
 
 If you enjoyed this app, don't forget to give a ⭐.
