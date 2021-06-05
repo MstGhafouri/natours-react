@@ -1,0 +1,42 @@
+version: "2.4"
+
+services:
+  client:
+    build:
+      context: client
+      target: dev
+    ports:
+      - "3000:3000"
+    environment: 
+      - EXPRESS_HOST=api  
+    volumes:
+      - ./client:/app/client:delegated
+      - /app/client/node_modules
+    depends_on:
+      api:
+        condition: service_healthy
+
+  api:
+    build:
+      context: .
+      target: dev
+    ports:
+      - "5050:5050"
+    healthcheck:
+      test: curl -f http://127.0.0.1
+    depends_on:
+      db:
+        condition: service_healthy
+    volumes:
+      - ./server:/app/server:delegated
+      - /app/server/node_modules
+
+  db:
+    image: mongo:4.2
+    volumes:
+      - mongo-data:/data/db
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo localhost:27017/test --quiet
+
+volumes:
+  mongo-data:

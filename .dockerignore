@@ -1,0 +1,15 @@
+.git/
+
+node_modules/
+
+dev-data/
+
+*.env
+
+.gitignore
+
+.dokcerignore
+
+*Dockerfile*
+
+*docker-compose*
