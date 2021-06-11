@@ -3,14 +3,19 @@
   "version": "1.0.0",
   "description": "NodeJS, Express, Mongodb & React",
   "main": "app.js",
+  "jest": {
+    "setupFilesAfterEnv": [
+      "./tests/setup.js"
+    ]
+  },
   "scripts": {
     "start": "node server/server.js",
-    "server": "nodemon server/server.js",
+    "server": "cross-env NODE_ENV=development nodemon server/server.js",
     "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "prod": "cross-env NODE_ENV=production npm run dev",
-    "server:prod": "cross-env NODE_ENV=production nodemon server/server.js",
-    "debug": "ndb server/server.js",
+    "dev": "cross-env NODE_ENV=development concurrently \"npm run server\" \"npm run client\"",
+    "server:prod": "nodemon server/server.js",
+    "debug": "cross-env NODE_ENV=development ndb server/server.js",
+    "test": "cross-env NODE_ENV=test jest -- booking",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "author": "Mostafa Ghafouri",
@@ -26,8 +31,11 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.1.3",
     "eslint-plugin-react": "^7.19.0",
+    "jest": "^27.0.4",
     "nodemon": "^2.0.7",
-    "prettier": "^2.0.5"
+    "prettier": "^2.0.5",
+    "puppeteer": "^10.0.0",
+    "supertest": "^6.1.3"
   },
   "dependencies": {
     "@babel/polyfill": "^7.8.7",
