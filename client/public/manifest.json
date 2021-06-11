@@ -1,15 +1,25 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "name": "Natours | Where Life Begins",
+  "short_name": "Natours React",
+  "description": "Natours - Where Life Begins",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "/img/icons/favicon.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/img/icons/logo-green-round.png",
+      "sizes": "297x297",
+      "type": "image/png"
     }
   ],
-  "start_url": ".",
+  "start_url": "/",
+  "scope": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "orientation": "portrait-primary",
+  "theme_color": "#55c57a",
+  "background_color": "#7dd56f",
+  "lang": "en-US",
+  "dir": "ltr"
 }
