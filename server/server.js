@@ -1,6 +1,4 @@
-const path = require('path');
 const mongoose = require('mongoose');
-const dotenv = require('dotenv');
 
 process.on('uncaughtException', err => {
   // eslint-disable-next-line no-console
@@ -8,7 +6,6 @@ process.on('uncaughtException', err => {
   process.exit(1);
 });
 
-dotenv.config({ path: path.join(__dirname, '../config.env') });
 const app = require('./app');
 
 const DB = process.env.DATABASE.replace(
@@ -37,7 +34,9 @@ const server = app.listen(port, () => {
 const shutDown = () => {
   // eslint-disable-next-line no-console
   console.log('Sig signal received!. Shutting down gracefully!');
-  server.close(err => (err ? process.exit(1) : process.exit()));
+  server.close(err => {
+    err ? process.exit(1) : process.exit();
+  });
 };
 
 process.on('unhandledRejection', err => {
