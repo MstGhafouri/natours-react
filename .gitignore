@@ -1,7 +1,12 @@
 node_modules/
+
 client/node_modules/
 
 *.env
+
+configs/.env.production
+configs/.env.development
+configs/.env.test
 
 .vscode/
 .cache/
